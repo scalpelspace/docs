@@ -26,8 +26,7 @@ The official STM32L432KC Momentum firmware is managed
 here: [momentum](https://github.com/scalpelspace/momentum).
 
 See [Momentum - Hardware, STM32L432KC Flashing]({% link products/momentum/hardware.md%}#29-stm32l432kc-flashing)
-for details on how to update the firmware via
-the [`pyblasher`](https://github.com/scalpelspace/pyblasher) software.
+for details on how to update the firmware.
 
 > **Note:** Momentum was originally designed for the BNO085, however hardware
 > files were updated to reflect use of the newer BNO086. Firmware is cross

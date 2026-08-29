@@ -176,21 +176,15 @@ functionality of the WS2812B in this level shifting configuration.
 
 ### 2.9 STM32L432KC Flashing
 
-The official STM32L432KC Momentum firmware is managed
-here: [`momentum`](https://github.com/scalpelspace/momentum).
+The official STM32L432KC Momentum firmware is managed here: [
+`momentum`](https://github.com/scalpelspace/momentum).
 
 The STM32L432KC can be flashed in 3 different ways:
 
-1. SWD via Tag-Connect TC2050 interface.
-2. Hands-free UART bootloader via USB-C (CP2102N USB-to-UART).
+1. **Recommended:** USB-C + [blasher Web App](https://blasher.scalpelspace.com).
+    - Hands-free UART bootloader via USB-C (CP2102N USB-to-UART).
+2. SWD via Tag-Connect TC2050 interface.
 3. Manual BOOT0 jumper with UART bootloader via USB-C (CP2102N USB-to-UART).
-
-For use of the USB-C UART bootloader interface, the custom flashing
-software [`pyblasher`](https://github.com/scalpelspace/pyblasher) is highly
-recommended.
-
-All three options are available by default, however it is **suggested to use
-options 1 and 2** based on user preference.
 
 **Option 3** is applicable for users who wish to use the USB-C for as both a
 serial and UART bootloader interface. In this method, the through-hole
