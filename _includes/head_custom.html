@@ -1,10 +1,15 @@
 <!-- Favicon (if you want to override the theme default) -->
 <link rel="icon" href="/assets/img/favicon-512x512.png" type="image/png">
 
-<!-- Follow the viewing device's light/dark setting. The default stylesheet is
-     light (see _config.yml); the dark stylesheet only applies when the device
-     prefers dark, overriding the light rules since it loads after them. -->
+<!-- Follow the viewing device's light/dark setting. Both schemes load after the
+     theme's default stylesheet and override it via media queries. The build
+     time query string busts CDN/browser caches (the CSS is served with a 4 h
+     max-age), so a theme change is picked up on the next deploy. -->
+{% assign css_version = site.time | date: '%s' %}
 <meta name="color-scheme" content="light dark">
 <link rel="stylesheet"
-      href="{{ '/assets/css/just-the-docs-dark.css' | relative_url }}"
+      href="{{ '/assets/css/just-the-docs-light.css' | relative_url }}?v={{ css_version }}"
+      media="(prefers-color-scheme: light)">
+<link rel="stylesheet"
+      href="{{ '/assets/css/just-the-docs-dark.css' | relative_url }}?v={{ css_version }}"
       media="(prefers-color-scheme: dark)">
