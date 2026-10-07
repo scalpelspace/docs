@@ -46,7 +46,7 @@
     var main = document.getElementById('main-content');
     if (!main) return;
 
-    // Skip the theme's child-page "Table of contents" heading (.text-delta).
+    /* Skip the theme's child-page "Table of contents" heading (.text-delta). */
     var headings = Array.prototype.filter.call(
       main.querySelectorAll('h2[id], h3[id], h4[id]'),
       function (h) {
@@ -59,7 +59,7 @@
     headings.forEach(function (h) {
       var link = document.createElement('a');
       link.href = '#' + h.id;
-      // Heading anchors add an <a> with an SVG; textContent ignores it.
+      /* Heading anchors add an <a> with an SVG; textContent ignores it. */
       link.textContent = h.textContent.trim();
       var item = document.createElement('li');
       item.className = 'page-toc-' + h.tagName.toLowerCase();
