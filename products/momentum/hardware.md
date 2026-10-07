@@ -8,34 +8,6 @@ nav_order: 3
 
 ---
 
-<details markdown="1">
-  <summary>Table of Contents</summary>
-
-<!-- TOC -->
-  * [1 Overview](#1-overview)
-    * [1.1 Bill of Materials (BOM)](#11-bill-of-materials-bom)
-  * [2 Board Specifications](#2-board-specifications)
-    * [2.1 Connectors](#21-connectors)
-    * [2.2 Switches & Jumpers](#22-switches--jumpers)
-    * [2.3 Batteries](#23-batteries)
-    * [2.4 LEDs](#24-leds)
-    * [2.5 Test Pads](#25-test-pads)
-    * [2.6 Power Supply](#26-power-supply)
-      * [2.6.1 5 V Power OR Switch](#261-5-v-power-or-switch)
-      * [2.6.2 Optional 5 V Pin Supply Protection](#262-optional-5-v-pin-supply-protection)
-      * [2.6.3 3.3 V LDO Supply](#263-33-v-ldo-supply)
-    * [2.7 SPI Interface](#27-spi-interface)
-    * [2.8 Level Shifter](#28-level-shifter)
-    * [2.9 STM32L432KC Flashing](#29-stm32l432kc-flashing)
-    * [2.10 USB-C Serial Interface](#210-usb-c-serial-interface)
-  * [3 Schematics](#3-schematics)
-  * [4 CAD 3D Model](#4-cad-3d-model)
-<!-- TOC -->
-
-</details>
-
----
-
 ## 1 Overview
 
 ### 1.1 Bill of Materials (BOM)

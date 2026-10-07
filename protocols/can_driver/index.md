@@ -12,33 +12,6 @@ implementation: [can_driver](https://github.com/scalpelspace/can_driver)
 
 ---
 
-<details markdown="1">
-  <summary>Table of Contents</summary>
-
-<!-- TOC -->
-* [ScalpelSpace CAN Protocol](#scalpelspace-can-protocol)
-  * [1 Overview](#1-overview)
-    * [1.1 Design Goals](#11-design-goals)
-    * [1.2 Recommended Development Interfaces](#12-recommended-development-interfaces)
-  * [2 CAN ID Scheme](#2-can-id-scheme)
-    * [2.1 Why Classic CAN, 11-bit IDs](#21-why-classic-can-11-bit-ids)
-    * [2.2 Why Message Type First](#22-why-message-type-first)
-    * [2.3 Reserved Values](#23-reserved-values)
-  * [3 Node ID Allocation](#3-node-id-allocation)
-    * [3.1 Handshake](#31-handshake)
-    * [3.2 Design Decisions](#32-design-decisions)
-  * [4 DBC as the Source of Truth](#4-dbc-as-the-source-of-truth)
-    * [4.1 Per-Device DBCs](#41-per-device-dbcs)
-    * [4.2 Code Generation](#42-code-generation)
-    * [4.3 System-Level Merged DBC](#43-system-level-merged-dbc)
-  * [5 Known Limits and Trade-offs](#5-known-limits-and-trade-offs)
-  * [6 Read More](#6-read-more)
-<!-- TOC -->
-
-</details>
-
----
-
 ## 1 Overview
 
 `can_driver` is the central protocol and message scheme behind every

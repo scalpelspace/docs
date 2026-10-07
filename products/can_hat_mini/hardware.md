@@ -8,23 +8,6 @@ nav_order: 2
 
 ---
 
-<details markdown="1">
-  <summary>Table of Contents</summary>
-
-<!-- TOC -->
-  * [1 Overview](#1-overview)
-    * [1.1 Bill of Materials (BOM)](#11-bill-of-materials-bom)
-  * [2 Board Specifications](#2-board-specifications)
-    * [2.1 Connectors](#21-connectors)
-    * [2.2 Switches & Jumpers](#22-switches--jumpers)
-  * [3 Schematics](#3-schematics)
-  * [4 CAD 3D Model](#4-cad-3d-model)
-<!-- TOC -->
-
-</details>
-
----
-
 ## 1 Overview
 
 ### 1.1 Bill of Materials (BOM)

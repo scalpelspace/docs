@@ -8,18 +8,6 @@ nav_order: 2
 
 ---
 
-<details markdown="1">
-  <summary>Table of Contents</summary>
-
-<!-- TOC -->
-  * [1 Overview](#1-overview)
-    * [1.1 Block Diagram](#11-block-diagram)
-<!-- TOC -->
-
-</details>
-
----
-
 ## 1 Overview
 
 The official STM32L432KC Momentum firmware is managed

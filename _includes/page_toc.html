@@ -1,0 +1,80 @@
+<!-- Per-page "On this page" table of contents, built client side from the page's
+     h2-h4 headings so no markdown page has to embed one. Inserted just before
+     the first section heading. Shown only when the page has at
+     least two headings; opt out per page with `toc: false` in front matter. -->
+<style>
+  .page-toc {
+    margin: 1rem 0 1.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(127, 127, 127, 0.3);
+    border-radius: 4px;
+    font-size: 0.875rem;
+  }
+
+  .page-toc summary {
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+  }
+
+  .page-toc ul {
+    margin: 0.5rem 0 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .page-toc li {
+    margin: 0.2rem 0;
+  }
+
+  .page-toc li::before {
+    content: none !important;
+  }
+
+  .page-toc li.page-toc-h3 {
+    padding-left: 1.25rem;
+  }
+
+  .page-toc li.page-toc-h4 {
+    padding-left: 2.5rem;
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var main = document.getElementById('main-content');
+    if (!main) return;
+
+    // Skip the theme's child-page "Table of contents" heading (.text-delta).
+    var headings = Array.prototype.filter.call(
+      main.querySelectorAll('h2[id], h3[id], h4[id]'),
+      function (h) {
+        return !h.classList.contains('text-delta');
+      }
+    );
+    if (headings.length < 2) return;
+
+    var list = document.createElement('ul');
+    headings.forEach(function (h) {
+      var link = document.createElement('a');
+      link.href = '#' + h.id;
+      // Heading anchors add an <a> with an SVG; textContent ignores it.
+      link.textContent = h.textContent.trim();
+      var item = document.createElement('li');
+      item.className = 'page-toc-' + h.tagName.toLowerCase();
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+
+    var toc = document.createElement('details');
+    toc.className = 'page-toc';
+    toc.open = true;
+    var summary = document.createElement('summary');
+    summary.textContent = 'On this page';
+    toc.appendChild(summary);
+    toc.appendChild(list);
+
+    headings[0].insertAdjacentElement('beforebegin', toc);
+  });
+</script>
