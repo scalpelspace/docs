@@ -24,7 +24,6 @@ This setup is for Raspberry Pis running Ubuntu and similar Debian distros.
    # Add the following lines to config.txt:
    dtparam=spi=on
    dtoverlay=mcp251xfd,spi0-0,oscillator=40000000,interrupt=22,spimaxfrequency=10000000
-   gpio=22=ip,pu
    ```
 3. Reboot the system.
    ```shell
