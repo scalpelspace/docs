@@ -26,7 +26,12 @@ Front matter: product (key under _data/products).
           latest.name }} datasheet (latest)</a>
       </p>
     </div>
+    {%- if product.image %}
+    <img class="ds-product-photo" src="{{ product.image | relative_url }}"
+         alt="{{ product.name }}">
+    {%- else %}
     <div class="ds-figure-placeholder">Figure: product photo</div>
+    {%- endif %}
   </header>
 
   {{ content }}

@@ -7,6 +7,10 @@ tagline: GNSS, 9-DOF IMU and barometer sensor shield
 codename: momentum
 category: Sensors
 
+# Photo shown on product cards and the product page (site-relative path).
+# TODO TODO TODO UNCOMMENT:
+#image: /products/momentum/rel-b/assets/momentum_rel-b-top.png
+
 # Shared description, shown on the product page and at the top of every
 # release's datasheet overview. Markdown allowed.
 description: >-
@@ -17,12 +21,12 @@ description: >-
   host controller.
 
 # Oldest first. The last entry is treated as the latest release.
-releases: [rel_a, rel_b]
+releases: [ rel_a, rel_b ]
 
 # Spec ids (from each release's `specs`) shown in the product page
 # release comparison table. Cells that differ from the previous release
 # are highlighted.
-compare: [imu, supply_prot, usb_esd, usb_shield, logic, spi_cs, i_supply]
+compare: [ imu, supply_prot, usb_esd, usb_shield, logic, spi_cs, i_supply ]
 
 # Firmware and software live in their own repositories. Docs only link to
 # them; per-release compatibility goes in each release file (`firmware`).

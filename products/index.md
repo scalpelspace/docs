@@ -8,5 +8,5 @@ has_toc: false
 
 # Products
 
-Lorem ipsum dolor sit amet. Each product has one datasheet per hardware
+ScalpelSpace hardware products. Each product has one datasheet per hardware
 release; firmware and software are documented in their own repositories.

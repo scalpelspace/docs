@@ -419,6 +419,29 @@ tr.ds-current td {
   align-items: stretch;
 }
 
+.ds-catalog-card__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+  border-radius: 4px;
+}
+
+.ds-product-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--ds-border);
+  border-radius: 6px;
+}
+
+.ds-home-lead {
+  margin-top: 0;
+  font-size: 1.15rem;
+  color: var(--ds-muted);
+}
+
 /* ---------- Screen / print switches ---------- */
 
 .ds-print-only {

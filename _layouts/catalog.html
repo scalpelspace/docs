@@ -6,20 +6,4 @@ Product catalog: one card per product in _data/products.
 {%- endcomment -%}
 {{ content }}
 
-<div class="ds-catalog">
-  {%- for entry in site.data.products %}
-  {%- assign key = entry[0] %}
-  {%- assign pdata = entry[1] %}
-  {%- assign product = pdata.product %}
-  {%- assign latest_key = product.releases | last %}
-  {%- assign latest = pdata[latest_key] %}
-  <a class="ds-catalog-card"
-     href="{{ '/products/' | append: key | append: '/' | relative_url }}">
-    <div class="ds-figure-placeholder ds-figure-placeholder--thumb">Photo</div>
-    <span class="ds-kicker">{{ product.category }}</span>
-    <span class="ds-catalog-card__name">{{ product.name }}</span>
-    <span class="ds-catalog-card__tagline">{{ product.tagline }}</span>
-    <span class="ds-catalog-card__meta">Latest: {{ latest.name }} {% include datasheet/status_badge.html status=latest.status %} · {{ product.releases.size }} release{% if product.releases.size != 1 %}s{% endif %}</span>
-  </a>
-  {%- endfor %}
-</div>
+{% include datasheet/product_cards.html %}
