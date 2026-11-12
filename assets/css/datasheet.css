@@ -1,0 +1,528 @@
+/* Datasheet, product and catalog layouts. Sits on top of Just the Docs. */
+
+:root {
+  --ds-border: rgba(127, 127, 127, 0.3);
+  --ds-subtle: rgba(127, 127, 127, 0.08);
+  --ds-muted: #5c5962;
+  --ds-accent: #7253ed;
+  --ds-diff: rgba(255, 196, 0, 0.18);
+  --ds-ok: #1a7f37;
+  --ds-warn: #9a6700;
+  --ds-bad: #cf222e;
+  --ds-info: #0969da;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ds-muted: #a3a1a8;
+    --ds-accent: #a594f9;
+    --ds-diff: rgba(255, 196, 0, 0.15);
+    --ds-ok: #3fb950;
+    --ds-warn: #d29922;
+    --ds-bad: #f85149;
+    --ds-info: #58a6ff;
+  }
+}
+
+/* ---------- Header block ---------- */
+
+.ds-crumbs {
+  font-size: 0.8rem;
+  color: var(--ds-muted);
+  margin-bottom: 1rem;
+}
+
+.ds-crumbs a {
+  color: inherit;
+}
+
+.ds-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  align-items: start;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--ds-accent);
+  margin-bottom: 1rem;
+}
+
+.ds-head--product {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
+  border-bottom: 0;
+}
+
+.ds-kicker {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ds-muted);
+}
+
+.ds-title h1 {
+  margin: 0.25rem 0 0.25rem;
+}
+
+.ds-rel {
+  font-weight: 400;
+  color: var(--ds-accent);
+  white-space: nowrap;
+}
+
+.ds-tagline {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--ds-muted);
+}
+
+.ds-meta {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.2rem 1rem;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ds-border);
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.ds-meta dt {
+  color: var(--ds-muted);
+}
+
+.ds-meta dd {
+  margin: 0;
+}
+
+.ds-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.ds-toolbar select {
+  margin-left: 0.4rem;
+  padding: 0.25rem 0.4rem;
+  font: inherit;
+}
+
+.ds-banner {
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--ds-warn);
+  background: var(--ds-subtle);
+  font-size: 0.875rem;
+}
+
+/* ---------- Badges ---------- */
+
+.ds-badge {
+  display: inline-block;
+  padding: 0 0.45em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.5;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.ds-badge--active {
+  color: var(--ds-ok);
+}
+
+.ds-badge--preview {
+  color: var(--ds-info);
+}
+
+.ds-badge--nrnd {
+  color: var(--ds-warn);
+}
+
+.ds-badge--obsolete {
+  color: var(--ds-bad);
+}
+
+.ds-pin {
+  display: inline-block;
+  min-width: 2.6em;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--ds-subtle);
+}
+
+.ds-pin--pwr {
+  color: var(--ds-bad);
+}
+
+.ds-pin--in {
+  color: var(--ds-info);
+}
+
+.ds-pin--out {
+  color: var(--ds-ok);
+}
+
+.ds-pin--io {
+  color: var(--ds-warn);
+}
+
+/* ---------- Section numbering ---------- */
+
+.datasheet {
+  counter-reset: ds-h2;
+}
+
+.datasheet h2:not(.ds-nonum) {
+  counter-increment: ds-h2;
+  counter-reset: ds-h3;
+}
+
+.datasheet h2:not(.ds-nonum)::before {
+  content: counter(ds-h2) "  ";
+  color: var(--ds-accent);
+}
+
+.datasheet section > h3 {
+  counter-increment: ds-h3;
+}
+
+.datasheet section > h3::before {
+  content: counter(ds-h2) "." counter(ds-h3) "  ";
+  color: var(--ds-muted);
+}
+
+.datasheet h2 {
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--ds-border);
+}
+
+/* ---------- Tables ---------- */
+
+.ds-table-wrap {
+  overflow-x: auto;
+}
+
+.datasheet table, .product table {
+  width: 100%;
+  font-size: 0.85rem;
+}
+
+.datasheet td.num, .datasheet th.num, .product td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.ds-specs th:nth-child(n+3) {
+  text-align: right;
+}
+
+.ds-specs th:nth-child(1) {
+  width: 28%;
+}
+
+.ds-specs th:nth-child(2) {
+  width: 24%;
+}
+
+.ds-specs th:nth-child(n+3):nth-child(-n+5) {
+  width: 10%;
+}
+
+.ds-specs th:nth-child(6) {
+  width: 8%;
+  text-align: left;
+}
+
+.ds-specs tr.ds-group th {
+  text-align: left;
+  background: var(--ds-subtle);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ds-compare td.ds-diff {
+  background: var(--ds-diff);
+  font-weight: 600;
+}
+
+tr.ds-current td {
+  background: var(--ds-subtle);
+}
+
+.ds-compact {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.ds-compact li {
+  margin: 0;
+}
+
+/* ---------- Callouts, figures, lists ---------- */
+
+.ds-callout {
+  padding: 0.6rem 0.9rem;
+  border-left: 4px solid var(--ds-info);
+  background: var(--ds-subtle);
+}
+
+.ds-erratum {
+  padding: 0.25rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--ds-border);
+  border-left: 4px solid var(--ds-bad);
+  border-radius: 4px;
+}
+
+.ds-figure-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 10rem;
+  border: 2px dashed var(--ds-border);
+  border-radius: 6px;
+  color: var(--ds-muted);
+  font-size: 0.8rem;
+  background: var(--ds-subtle);
+}
+
+.ds-figure-placeholder--wide {
+  min-height: 12rem;
+  margin: 1rem 0;
+}
+
+.ds-figure-placeholder--thumb {
+  min-height: 6rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Figures side by side, e.g. board top and bottom. Each child is a <figure>
+   holding an <img> (or a placeholder) and an optional <figcaption>. */
+.ds-figure-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+  margin: 1rem 0;
+}
+
+.ds-figure-row figure {
+  margin: 0;
+  text-align: center;
+}
+
+.ds-figure-row img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--ds-border);
+  border-radius: 6px;
+}
+
+.ds-figure-row figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--ds-muted);
+}
+
+.ds-downloads {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ds-downloads li::before {
+  content: none !important;
+}
+
+.ds-filetype {
+  margin-left: 0.4rem;
+  padding: 0 0.35em;
+  border: 1px solid var(--ds-border);
+  border-radius: 3px;
+  font-size: 0.7rem;
+  color: var(--ds-muted);
+}
+
+.ds-applies, .ds-applies-inline {
+  color: var(--ds-muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- Product page / catalog cards ---------- */
+
+.ds-release-cards, .ds-catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.ds-release-card, .ds-catalog-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  padding: 1rem;
+  border: 1px solid var(--ds-border);
+  border-radius: 6px;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.ds-release-card:hover, .ds-catalog-card:hover {
+  border-color: var(--ds-accent);
+}
+
+.ds-release-card.is-latest {
+  border-color: var(--ds-accent);
+  border-width: 2px;
+}
+
+.ds-release-card__name, .ds-catalog-card__name {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.ds-release-card__meta, .ds-catalog-card__meta {
+  font-size: 0.8rem;
+  color: var(--ds-muted);
+}
+
+.ds-release-card__change, .ds-catalog-card__tagline {
+  font-size: 0.85rem;
+}
+
+.ds-catalog-card {
+  align-items: stretch;
+}
+
+/* ---------- Screen / print switches ---------- */
+
+.ds-print-only {
+  display: none;
+}
+
+@media (max-width: 50rem) {
+  .ds-head, .ds-head--product {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- Print ---------- */
+
+@page {
+  size: A4;
+  margin: 18mm 15mm 18mm 15mm;
+  @top-left {
+    font: 8pt system-ui, sans-serif;
+    color: #555;
+  }
+  @top-right {
+    font: 8pt system-ui, sans-serif;
+    color: #555;
+  }
+  @bottom-left {
+    font: 8pt system-ui, sans-serif;
+    color: #555;
+  }
+  @bottom-right {
+    font: 8pt system-ui, sans-serif;
+    color: #555;
+  }
+}
+
+@media print {
+  :root {
+    --ds-muted: #555;
+    --ds-accent: #3d2a9e;
+    --ds-diff: #fff3c4;
+  }
+
+  /* Hide Just the Docs chrome; print just the article. */
+  .side-bar, .main-header, .site-footer, .search, nav.breadcrumb-nav,
+  .ds-screen-only, .anchor-heading, .page-toc,
+  .main-content > hr, .main-content > footer {
+    display: none !important;
+  }
+
+  .main, .main-content-wrap, .main-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 10pt;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  .ds-print-only {
+    display: initial;
+  }
+
+  .ds-filename {
+    margin-left: 0.5rem;
+    font-family: monospace;
+    font-size: 8pt;
+    color: var(--ds-muted);
+  }
+
+  .ds-print-footer {
+    display: block;
+    margin-top: 2rem;
+    font-size: 8pt;
+    color: var(--ds-muted);
+  }
+
+  .ds-head {
+    grid-template-columns: 1fr auto;
+  }
+
+  .ds-table-wrap {
+    overflow: visible;
+  }
+
+  .ds-specs {
+    table-layout: fixed;
+  }
+
+  .datasheet th, .datasheet td {
+    padding: 0.3rem 0.5rem !important;
+  }
+
+  h2, h3 {
+    break-after: avoid;
+  }
+
+  table, figure, .ds-figure-row, .ds-figure-placeholder, .ds-erratum, .ds-callout {
+    break-inside: avoid;
+  }
+
+  tr {
+    break-inside: avoid;
+  }
+
+  .datasheet section {
+    break-inside: auto;
+  }
+
+  .ds-figure-placeholder {
+    background: #f4f4f4;
+  }
+}

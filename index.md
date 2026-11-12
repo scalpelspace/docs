@@ -10,11 +10,8 @@ ScalpelSpace technical documentation GitHub pages website.
 
 ---
 
-See the main products documentation listing page:
+- [Products]({% link products/index.md %}): one datasheet per hardware release.
+- [Protocols]({% link protocols/index.md %}): shared bus protocols.
 
-[Products]({% link products/index.md %})
-
-See the shared protocols documentation, including the ScalpelSpace CAN bus
-protocol:
-
-[Protocols]({% link protocols/index.md %})
+Firmware and software documentation lives in each project's GitHub
+repository.
