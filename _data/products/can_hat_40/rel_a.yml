@@ -27,13 +27,9 @@ specs:
   - { id: supply,      group: Power,          param: Supply,            value: From the host 40-pin header }
   - { id: logic,       group: Power,          param: Logic level,       value: 3.3 V (fixed) }
   - { id: host_if,     group: Host interface, param: Interface,         value: "SPI (default SPI0, CE0)" }
-  - { id: int,         group: Host interface, param: Interrupt,         value: GPIO22 (default) }
-  - { id: can,         group: CAN,            param: CAN,               value: Classic CAN and CAN FD }
   - { id: controller,  group: CAN,            param: Controller,        value: "MCP2518FD, 40 MHz crystal" }
   - { id: transceiver, group: CAN,            param: Transceiver,       value: TJA1057BTK }
   - { id: termination, group: CAN,            param: Bus termination,   value: "Switch selectable 120 Ohm, split 2x 60 Ohm + centre-tap capacitor (SW1)" }
-  - { id: silent,      group: CAN,            param: Silent mode,       value: "Jumper selectable, listen-only (JP1)" }
-  - { id: pcb,         group: Mechanical,     param: PCB,               value: 4-layer }
   - { id: form,        group: Mechanical,     param: Form factor,       value: 40-pin (2x20) GPIO hat }
 
 connectors:
