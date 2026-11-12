@@ -1,0 +1,47 @@
+# Product-level data: facts shared by every hardware release of this product.
+# Release-specific data lives next to this file, one file per release
+# (rel_a.yml, ...). File names are the release keys.
+
+name: SPI-CAN Breakout
+tagline: Breadboard-friendly CAN FD breakout for SPI hosts
+codename: can_hat_mini
+category: CAN interfaces
+
+# Photo shown on product cards and the product page (site-relative path).
+#image: /products/can_hat_mini/rel-a/assets/can_hat_mini_rel-a-top.png
+
+# Shared description, shown on the product page and at the top of every
+# release's datasheet overview. Markdown allowed.
+description: >-
+  A small-footprint, breadboard-friendly breakout board that bridges an SPI
+  host to a CAN bus. It exposes a standard SPI interface on one side and a CAN
+  transceiver on the other, letting any microcontroller with SPI talk CAN
+  without an integrated controller.
+
+# Oldest first. The last entry is treated as the latest release.
+releases: [ rel_a ]
+
+# Spec ids (from each release's `specs`) shown in the product page
+# release comparison table. Cells that differ from the previous release
+# are highlighted.
+compare: [ can, controller, termination, logic ]
+
+# Firmware and software live in their own repositories. Docs only link to
+# them.
+repos:
+  - label: can_hat_mini_pcb
+    kind: Hardware
+    url: https://github.com/scalpelspace/can_hat_mini_pcb
+    desc: PCB design files and release notes.
+  - label: scalpelspace_bus
+    kind: Arduino library
+    url: https://github.com/scalpelspace/scalpelspace_bus
+    desc: ScalpelSpace unified CAN ID allocation scheme and device control.
+  - label: ACAN2517
+    kind: Third-party Arduino library
+    url: https://github.com/pierremolinaro/acan2517
+    desc: MCP2517FD/MCP2518FD driver, Classic CAN.
+  - label: ACAN2517FD
+    kind: Third-party Arduino library
+    url: https://github.com/pierremolinaro/acan2517FD
+    desc: MCP2517FD/MCP2518FD driver, CAN FD.

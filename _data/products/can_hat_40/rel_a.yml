@@ -1,0 +1,64 @@
+name: Rel A
+slug: rel-a                     # URL segment: /products/can_hat_40/rel-a/
+version: v0.1.0                 # code version, matches the internal git release tag
+status: active                  # preview | active | nrnd | obsolete
+released: 2025-08-03
+doc_id: DS-CAN-HAT-40-A
+doc_rev: "1.0"
+doc_updated: 2026-11-12
+marking: can_hat_40_pcb v0.1.0  # silkscreen text identifying this release
+pcb: can_hat_40_pcb v0.1.0
+
+# What changed relative to the previous release (shown in release history).
+changes:
+  - Initial release.
+
+features:
+  - "Standard **40-pin (2x20) GPIO header** for direct mounting on Raspberry Pi and compatible SBCs"
+  - "**SPI** host interface for Classic CAN and CAN FD via the MCP2518FD controller"
+  - "Switch selectable **bus termination** (split 2x 60 Ohm + centre-tap capacitor)"
+  - "Jumper selectable **silent mode** (listen-only) for bus monitoring"
+  - "Operates at fixed **3.3 V logic**"
+
+# Flat list; `group` controls table grouping, `id` links rows across
+# releases for comparison. Use min/typ/max/unit for numbers, or `value`
+# for text.
+specs:
+  - { id: supply,      group: Power,          param: Supply,            value: From the host 40-pin header }
+  - { id: logic,       group: Power,          param: Logic level,       value: 3.3 V (fixed) }
+  - { id: host_if,     group: Host interface, param: Interface,         value: "SPI (default SPI0, CE0)" }
+  - { id: int,         group: Host interface, param: Interrupt,         value: GPIO22 (default) }
+  - { id: can,         group: CAN,            param: CAN,               value: Classic CAN and CAN FD }
+  - { id: controller,  group: CAN,            param: Controller,        value: "MCP2518FD, 40 MHz crystal" }
+  - { id: transceiver, group: CAN,            param: Transceiver,       value: TJA1057BTK }
+  - { id: termination, group: CAN,            param: Bus termination,   value: "Switch selectable 120 Ohm, split 2x 60 Ohm + centre-tap capacitor (SW1)" }
+  - { id: silent,      group: CAN,            param: Silent mode,       value: "Jumper selectable, listen-only (JP1)" }
+  - { id: pcb,         group: Mechanical,     param: PCB,               value: 4-layer }
+  - { id: form,        group: Mechanical,     param: Form factor,       value: 40-pin (2x20) GPIO hat }
+
+connectors:
+  - { ref: J1, name: 40-pin, desc: "Standard 40-pin (2x20) GPIO pin header." }
+  - ref: J2
+    name: CAN
+    desc: CAN bus connection.
+    pins:
+      - { pin: "1", name: GND,  type: pwr, desc: Ground }
+      - { pin: "2", name: CANH, type: io,  desc: CAN high }
+      - { pin: "3", name: CANL, type: io,  desc: CAN low }
+
+switches:
+  - { ref: SW1, name: CAN termination, desc: "1 + 2 = 120 Ohm termination, 2 + 3 = no termination" }
+  - { ref: JP1, name: CAN silent,      desc: "Open = normal operation, closed = silent mode" }
+
+downloads:
+  - { label: Schematic, type: PDF,  file: can_hat_40_rel-a_schematic.pdf }
+  - { label: Gerbers,   type: ZIP,  file: can_hat_40_rel-a_gerber.zip }
+  - { label: 3D model,  type: STEP, file: can_hat_40_rel-a.step }
+
+bom:
+  - { mpn: MCP2518FDT-E/QBB,       mfr: Microchip Technology, desc: CAN FD to SPI controller,       qty: 1 }
+  - { mpn: TJA1057BTK,             mfr: NXP USA Inc.,         desc: CAN bus transceiver,            qty: 1 }
+  - { mpn: JS202011JAQN,           mfr: C&K,                  desc: "DPDT slide switch, right angle", qty: 1 }
+  - { mpn: ECS-400-10-37B2-CKY-TR, mfr: ECS Inc.,             desc: 40 MHz crystal,                 qty: 1 }
+
+errata: [ ]
