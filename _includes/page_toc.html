@@ -1,6 +1,6 @@
 <!-- Per-page "On this page" table of contents, built client side from the page's
-     h2-h4 headings so no markdown page has to embed one. Inserted just before
-     the first section heading. Shown only when the page has at
+     h2-h4 headings so no markdown page has to embed one. Inserted right after
+     the page title. Shown only when the page has at
      least two headings; opt out per page with `toc: false` in front matter. -->
 <style>
   .page-toc {
@@ -75,6 +75,19 @@
     toc.appendChild(summary);
     toc.appendChild(list);
 
-    headings[0].insertAdjacentElement('beforebegin', toc);
+    /* Place the TOC at the top of the page: right after the page title (and
+       the "Applies to" line on guides, when present). The first section
+       heading can sit well below introductory content, so anchoring to it
+       would drop the TOC mid-page. Pages without a title fall back to just
+       before the first section heading. */
+    var title = main.querySelector('h1');
+    if (title) {
+      var anchor = title;
+      var next = title.nextElementSibling;
+      if (next && next.classList.contains('ds-applies')) anchor = next;
+      anchor.insertAdjacentElement('afterend', toc);
+    } else {
+      headings[0].insertAdjacentElement('beforebegin', toc);
+    }
   });
 </script>
