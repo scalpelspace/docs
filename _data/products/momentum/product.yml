@@ -1,0 +1,53 @@
+# Product-level data: facts shared by every hardware release of this product.
+# Release-specific data lives next to this file, one file per release
+# (rel_a.yml, rel_b.yml, ...). File names are the release keys.
+
+name: Momentum
+tagline: GNSS, 9-DOF IMU and barometer sensor shield
+codename: momentum
+category: Sensors
+
+# Shared description, shown on the product page and at the top of every
+# release's datasheet overview. Markdown allowed.
+description: >-
+  A Uno-style footprint sensor integration board that bridges an SPI or CAN
+  host to sensor telemetry. It combines a 9-DOF IMU, multi-constellation GNSS
+  and a barometric pressure sensor on a single board, allowing rapid
+  integration of a full sensor suite into any project with an SPI or CAN bus
+  host controller.
+
+# Oldest first. The last entry is treated as the latest release.
+releases: [rel_a, rel_b]
+
+# Spec ids (from each release's `specs`) shown in the product page
+# release comparison table. Cells that differ from the previous release
+# are highlighted.
+compare: [imu, supply_prot, usb_esd, usb_shield, logic, spi_cs, i_supply]
+
+# Firmware and software live in their own repositories. Docs only link to
+# them; per-release compatibility goes in each release file (`firmware`).
+repos:
+  - label: momentum_pcb
+    kind: Hardware
+    url: https://github.com/scalpelspace/momentum_pcb
+    desc: PCB design files and release notes.
+  - label: momentum
+    kind: Firmware
+    url: https://github.com/scalpelspace/momentum
+    desc: Official STM32L432KC firmware.
+  - label: pyblasher
+    kind: Flashing tool
+    url: https://github.com/scalpelspace/pyblasher
+    desc: UART bootloader flashing over USB-C.
+  - label: momentum_driver
+    kind: Driver
+    url: https://github.com/scalpelspace/momentum_driver
+    desc: Host driver (SPI/CAN).
+  - label: scalpelspace_momentum
+    kind: Arduino library
+    url: https://github.com/scalpelspace/scalpelspace_momentum
+    desc: Arduino library (SPI).
+  - label: scalpelspace_bus
+    kind: Arduino library
+    url: https://github.com/scalpelspace/scalpelspace_bus
+    desc: Arduino library (CAN).

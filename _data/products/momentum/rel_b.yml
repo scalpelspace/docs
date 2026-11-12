@@ -1,0 +1,122 @@
+name: Rel B
+slug: rel-b                   # URL segment: /products/momentum/rel-b/
+version: v0.2.0               # code version, matches the internal git release tag
+status: active                # preview | active | nrnd | obsolete
+released: 2025-08-03
+doc_id: DS-MOMENTUM-B
+doc_rev: "1.0"
+doc_updated: 2026-11-12
+marking: momentum_pcb v0.2.0  # silkscreen text identifying this release
+pcb: momentum_pcb v0.2.0
+
+# What changed relative to the previous release (shown in release history).
+changes:
+  - Swap BNO085 to BNO086.
+  - Swap from the TPD2EUSB30 to USBLC6-2P6 for VBUS ESD protection.
+  - Float the USB-C shield (previously tied to ground).
+
+features:
+  - "**9-DOF IMU** via the BNO086"
+  - "**Multi-constellation GNSS** via the SAM-M10Q"
+  - "**24-bit barometric pressure sensor** via the BMP390"
+  - "**SPI or Classic CAN** host interface, driven by an STM32L432KC sensor hub"
+  - "**USB-C serial interface** (CP2102N) for firmware update, plus SWD via Tag-Connect"
+  - "Addressable **RGB LED** (WS2812B)"
+  - "Dual **5 V source** (5V pin or USB-C) with automatic switching"
+  - "Jumper selectable **5 V or 3.3 V logic level** on the SPI interface"
+  - "Optional **5V pin protection** (reverse polarity Schottky and TVS footprints, not populated)"
+
+# Flat list; `group` controls table grouping, `id` links rows across
+# releases for comparison. Use min/typ/max/unit for numbers, or `value`
+# for text.
+specs:
+  - { id: vin,         group: Power,          param: Supply voltage,        cond: 5V pin or USB-C, typ: 5.0, unit: V }
+  - { id: i_supply,    group: Power,          param: Supply current,        cond: All sensors on,  typ: 30,  max: 300,  unit: mA }
+  - { id: supply_sel,  group: Power,          param: 5 V source selection,  value: "Automatic OR switch (TPS2116DRL), 5V pin has priority" }
+  - { id: supply_prot, group: Power,          param: 5V pin protection,     value: "Optional Schottky (D1) and TVS (D2) diodes, not populated (JP1)" }
+  - { id: v33,         group: Power,          param: 3.3 V rail,            value: "Onboard LDO, optional output on the 3.3V pin (JP7)" }
+  - { id: host_if,     group: Host interface, param: Interface,             value: Classic CAN, SPI or Serial }
+  - { id: can,         group: Host interface, param: CAN,                   value: "Classic CAN (default 500 kbps) onboard termination" }
+  - { id: logic,       group: Host interface, param: SPI logic level,       value: "5 V (default) or 3.3 V (JP1)" }
+  - { id: spi_cs,      group: Host interface, param: SPI CS pin,            value: "D10 (default) or D8 (JP6)" }
+  - { id: usb,         group: Host interface, param: USB,                   value: "USB-C, CP2102N USB-to-UART bridge" }
+  - { id: imu,         group: Devices,        param: IMU,                   value: BNO086 }
+  - { id: gnss,        group: Devices,        param: GNSS module,           value: SAM-M10Q }
+  - { id: baro,        group: Devices,        param: Barometer,             value: "BMP390, I2C address 0x76 (default) or 0x77 (JP5)" }
+  - { id: form,        group: Mechanical,     param: Form factor,           value: "Uno-style shield" }
+
+connectors:
+  - { ref: J1, name: Tag-Connect TC2050, desc: SWD programming/debug connector. }
+  - { ref: J2, name: BOOT0 jumper,       desc: "Through-hole jumper. Open = run from flash memory (pull-down on open), bridged = assert BOOT0." }
+  - { ref: J3, name: USB-C,              desc: "USB-to-serial programming/debug, secondary 5 V source." }
+  - ref: J4
+    name: CAN1
+    desc: CAN bus connection.
+    pins:
+      - { pin: "1", name: CANH, type: io, desc: CAN1 high }
+      - { pin: "2", name: CANL, type: io, desc: CAN1 low }
+  - ref: Uno
+    name: Uno-style headers
+    desc: "Host interface: SPI (level shifted), 5 V supply input, optional 3.3 V and reset outputs."
+    pins:
+      - { pin: D13,   name: SCK,  type: in,  desc: SPI clock }
+      - { pin: D12,   name: CIPO, type: out, desc: "SPI controller in, peripheral out" }
+      - { pin: D11,   name: COPI, type: in,  desc: "SPI controller out, peripheral in" }
+      - { pin: D10,   name: CS1,  type: in,  desc: "SPI chip select (default, JP6 1 + 2)" }
+      - { pin: D8,    name: CS2,  type: in,  desc: "Alternative SPI chip select (JP6 2 + 3)" }
+      - { pin: 5V,    name: 5V,   type: pwr, desc: "Primary 5 V supply input (priority over USB-C)" }
+      - { pin: 3.3V,  name: 3V3,  type: pwr, desc: "Optional 3.3 V LDO output (JP7 closed)" }
+      - { pin: RESET, name: NRST, type: io,  desc: "Optional STM32 NRST connection (JP8 closed)" }
+
+switches:
+  - { ref: SW1, name: Sensor hub MCU reset button, desc: "Generic 6 mm TH button, push to reset" }
+  - { ref: JP1, name: 5 V bypass,                  desc: "Closed = short the protection (Schottky) diode pads, open = enforce Schottky diode" }
+  - { ref: JP2, name: Level shifter V IO,          desc: "1 + 2 closed = 5 V, 2 + 3 closed = 3.3 V" }
+  - { ref: JP3, name: BOOT0 DTR bridge,            desc: "Closed = CP2102N DTR BOOT0 control, open = manual BOOT0" }
+  - { ref: JP4, name: BNO086 clock select,         desc: "Open = crystal, closed = external/internal" }
+  - { ref: JP5, name: BMP390 I2C address,          desc: "Open = 0x76, closed = 0x77" }
+  - { ref: JP6, name: Interface SPI CS pin select, desc: "1 + 2 closed = CS1 (D10), 2 + 3 closed = CS2 (D8)" }
+  - { ref: JP7, name: Interface 3.3 V output,      desc: "Open = no output, closed = 3.3 V LDO output bridged" }
+  - { ref: JP8, name: Interface NRESET output,     desc: "Open = no output, closed = STM32 NRST bridged" }
+
+leds:
+  - { name: UART TX,     mark: 'Silkscreen "TX"',         desc: "Green LED: blinking = transmitting data" }
+  - { name: UART RX,     mark: 'Silkscreen "RX"',         desc: "Amber LED: blinking = receiving data" }
+  - { name: 5 V supply,  mark: Silkscreen lightning bolt, desc: "Amber LED: on = 5V pin, off = (only) USB-C" }
+  - { name: WS2812B LED, mark: None,                      desc: RGB addressable LED }
+
+test_points:
+  - { ref: TP1, name: GPS NRST,        desc: u-blox GPS NRST net }
+  - { ref: TP2, name: GPS RX,          desc: u-blox GPS RX net }
+  - { ref: TP3, name: GPS TX,          desc: u-blox GPS TX net }
+  - { ref: TP4, name: WS2812B LED PWM, desc: DOUT from onboard WS2812B }
+
+batteries:
+  - { ref: BT1, name: CR1220 battery cell, desc: u-blox GPS RTC and ephemeris RAM }
+
+firmware:
+  note: >-
+    The momentum firmware supports both the BNO085 and BNO086 (source files
+    keep the "BNO085" naming). Flash over USB-C with blasher or over SWD (see
+    Detailed description).
+
+protocols:
+  - { name: ScalpelSpace CAN Protocol, url: /protocols/can_driver/ }
+
+downloads:
+  - { label: Schematic,    type: PDF,  file: momentum_rel-b_schematic.pdf }
+  - { label: Gerbers, type: ZIP, file: momentum_rel-b_gerbers.zip }
+  - { label: 3D model,     type: STEP, file: momentum_rel-b.step }
+
+bom:
+  - { mpn: STM32L432KC,         mfr: STMicroelectronics,        desc: 32-bit MCU,                          qty: 1 }
+  - { mpn: CP2102N-A02-GQFN24R, mfr: Silicon Labs,              desc: USB 2.0 to UART interface,           qty: 1 }
+  - { mpn: BNO086,              mfr: "CEVA Technologies, Inc.", desc: 9-DOF IMU,                           qty: 1 }
+  - { mpn: BMP390,              mfr: Bosch Sensortec,           desc: Barometric pressure sensor,          qty: 1 }
+  - { mpn: TJA1057BTK,          mfr: NXP USA Inc.,              desc: CAN bus transceiver,                 qty: 1 }
+  - { mpn: SAM-M10Q,            mfr: u-blox,                    desc: "RF receiver Galileo, GLONASS, GPS", qty: 1 }
+  - { mpn: WS2812B,             mfr: (Various),                 desc: PWM addressable RGB LED,             qty: 1 }
+  - { mpn: TPS2116DRL,          mfr: Texas Instruments,         desc: 5 V power OR switch,                 qty: 1 }
+  - { mpn: USBLC6-2P6,          mfr: STMicroelectronics,        desc: USB ESD protection,                  qty: 1 }
+
+errata: [ ]

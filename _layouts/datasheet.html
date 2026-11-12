@@ -1,0 +1,469 @@
+---
+layout: default
+toc: false
+---
+{%- comment -%}
+One datasheet per product hardware release.
+Front matter: product (key under _data/products), release (data file key).
+Everything is rendered from the release's data file except two prose areas
+taken from the page body:
+- text above the details marker  = short "Overview" (near the top)
+- text below the details marker  = "Detailed description" (just before
+"Firmware and software")
+The marker is an HTML comment containing only the word: details
+{%- endcomment -%}
+{%- assign pdata = site.data.products[page.product] -%}
+{%- assign product = pdata.product -%}
+{%- assign rel = pdata[page.release] -%}
+{%- assign latest_key = product.releases | last -%}
+{%- assign latest = pdata[latest_key] -%}
+{%- assign body = content | replace: "<!-- details -->", "<!--details-->" -%}
+{%- assign body_parts = body | split: "<!--details-->" -%}
+{%- capture product_url %}/products/{{ page.product }}/{% endcapture -%}
+
+<style>
+  /* Running header/footer for print (Chrome 131+, Paged.js). */
+  @page {
+    @top-left {
+      content: "{{ product.name }} {{ rel.name }} datasheet";
+    }
+    @top-right {
+      content: "{{ rel.doc_id }} rev {{ rel.doc_rev }}";
+    }
+    @bottom-left {
+      content: "{{ site.url | default: 'docs.scalpelspace.com' | remove: 'https://' }}{{ product_url }}{{ rel.slug }}/";
+    }
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+    }
+  }
+</style>
+
+<article class="datasheet">
+
+  <nav class="ds-crumbs ds-screen-only" aria-label="Breadcrumb">
+    <a href="{{ '/products/' | relative_url }}">Products</a> /
+    <a href="{{ product_url | relative_url }}">{{ product.name }}</a> /
+    <span>{{ rel.name }}</span>
+  </nav>
+
+  {%- if page.release != latest_key %}
+  <div class="ds-banner ds-screen-only">
+    You are viewing <strong>{{ rel.name }}</strong>{% if rel.status == "nrnd"
+    %}, which is not recommended for new designs{% elsif rel.status ==
+    "obsolete" %}, which is obsolete{% endif %}.
+    The latest release is <a
+    href="{{ product_url | append: latest.slug | append: '/' | relative_url }}">{{
+    latest.name }}</a>.
+  </div>
+  {%- endif %}
+
+  <header class="ds-head">
+    <div class="ds-title">
+      <p class="ds-kicker">{{ product.category }} · Datasheet</p>
+      <h1>{{ product.name }} <span class="ds-rel">{{ rel.name }}</span></h1>
+      <p class="ds-tagline">{{ product.tagline }}</p>
+    </div>
+    <dl class="ds-meta">
+      <dt>Codename</dt>
+      <dd><code>{{ product.codename }}</code></dd>
+      <dt>Release</dt>
+      <dd>{{ rel.name }} {% include datasheet/status_badge.html
+        status=rel.status %}
+      </dd>
+      {%- if rel.version %}
+      <dt>Version</dt>
+      <dd><code>{{ rel.version }}</code></dd>
+      {%- endif %}
+      <dt>Released</dt>
+      <dd>{{ rel.released | date: "%Y-%m-%d" }}</dd>
+      <dt>Marking</dt>
+      <dd><code>{{ rel.marking }}</code></dd>
+      <dt>Document</dt>
+      <dd>{{ rel.doc_id }} rev {{ rel.doc_rev }}, {{ rel.doc_updated | date:
+        "%Y-%m-%d" }}
+      </dd>
+    </dl>
+  </header>
+
+  <div class="ds-toolbar ds-screen-only">
+    <label>
+      Release
+      <select onchange="window.location.href = this.value"
+              aria-label="Select release">
+        {%- assign rel_keys = product.releases | reverse -%}
+        {%- for key in rel_keys %}
+        {%- assign item = pdata[key] %}
+        <option
+          value="{{ product_url | append: item.slug | append: '/' | relative_url }}"
+          {% if key== page.release %}selected{% endif %}>
+          {{ item.name }}{% if key == latest_key %} (latest){% endif %}
+        </option>
+        {%- endfor %}
+      </select>
+    </label>
+    <button type="button" class="btn btn-outline" onclick="window.print()">
+      Print / Save PDF
+    </button>
+  </div>
+
+  <section>
+    <h2 id="features">Features</h2>
+    <ul>
+      {%- for f in rel.features %}
+      <li>{{ f | markdownify | remove: '<p>' | remove: '</p>' | strip }}
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="overview">Overview</h2>
+    {{ product.description | markdownify }}
+    {{ body_parts[0] }}
+  </section>
+
+  <section>
+    <h2 id="specifications">Specifications</h2>
+    <div class="ds-table-wrap">
+      <table class="ds-specs">
+        <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Conditions</th>
+          <th>Min</th>
+          <th>Typ</th>
+          <th>Max</th>
+          <th>Unit</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- assign groups = rel.specs | group_by: "group" -%}
+        {%- for g in groups %}
+        <tr class="ds-group">
+          <th colspan="6">{{ g.name }}</th>
+        </tr>
+        {%- for r in g.items %}
+        <tr>
+          <td>{{ r.param }}</td>
+          {%- if r.value %}
+          <td colspan="5">{{ r.value }}</td>
+          {%- else %}
+          <td>{{ r.cond }}</td>
+          <td class="num">{{ r.min }}</td>
+          <td class="num">{{ r.typ }}</td>
+          <td class="num">{{ r.max }}</td>
+          <td>{{ r.unit }}</td>
+          {%- endif %}
+        </tr>
+        {%- endfor %}
+        {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {%- if rel.connectors %}
+  <section>
+    <h2 id="connectors">Connectors and pinout</h2>
+    <div class="ds-figure-placeholder ds-figure-placeholder--wide">Figure:
+      connector locations (top view)
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>Ref</th>
+        <th>Connector</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      {%- for c in rel.connectors %}
+      <tr>
+        <td><code>{{ c.ref }}</code></td>
+        <td>{{ c.name }}</td>
+        <td>{{ c.desc }}</td>
+      </tr>
+      {%- endfor %}
+      </tbody>
+    </table>
+    {%- for c in rel.connectors %}
+    {%- if c.pins %}
+    <h3 id="conn-{{ c.ref | downcase }}">{{ c.ref }}: {{ c.name }}</h3>
+    <div class="ds-table-wrap">
+      <table class="ds-pins">
+        <thead>
+        <tr>
+          <th>Pin</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%- for p in c.pins %}
+        <tr>
+          <td><code>{{ p.pin }}</code></td>
+          <td><strong>{{ p.name }}</strong></td>
+          <td><span
+            class="ds-pin ds-pin--{{ p.type }}">{{ p.type | upcase }}</span>
+          </td>
+          <td>{{ p.desc }}</td>
+        </tr>
+        {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+    {%- endif %}
+    {%- endfor %}
+  </section>
+  {%- endif %}
+
+  {%- if rel.switches %}
+  <section>
+    <h2 id="switches">Switches and jumpers</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Ref</th>
+        <th>Function</th>
+        <th>Settings</th>
+      </tr>
+      </thead>
+      <tbody>
+      {%- for s in rel.switches %}
+      <tr>
+        <td><code>{{ s.ref }}</code></td>
+        <td>{{ s.name }}</td>
+        <td>{{ s.desc }}</td>
+      </tr>
+      {%- endfor %}
+      </tbody>
+    </table>
+  </section>
+  {%- endif %}
+
+  {%- if rel.leds or rel.test_points or rel.batteries %}
+  <section>
+    <h2 id="indicators">Indicators, test pads and battery</h2>
+    {%- if rel.leds %}
+    <h3 id="leds">LEDs</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>LED</th>
+        <th>Marking</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      {%- for l in rel.leds %}
+      <tr>
+        <td>{{ l.name }}</td>
+        <td>{{ l.mark }}</td>
+        <td>{{ l.desc }}</td>
+      </tr>
+      {%- endfor %}
+      </tbody>
+    </table>
+    {%- endif %}
+    {%- if rel.test_points %}
+    <h3 id="test-pads">Test pads</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>Ref</th>
+        <th>Net</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      {%- for t in rel.test_points %}
+      <tr>
+        <td><code>{{ t.ref }}</code></td>
+        <td>{{ t.name }}</td>
+        <td>{{ t.desc }}</td>
+      </tr>
+      {%- endfor %}
+      </tbody>
+    </table>
+    {%- endif %}
+    {%- if rel.batteries %}
+    <h3 id="batteries">Batteries</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>Ref</th>
+        <th>Battery</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      {%- for b in rel.batteries %}
+      <tr>
+        <td><code>{{ b.ref }}</code></td>
+        <td>{{ b.name }}</td>
+        <td>{{ b.desc }}</td>
+      </tr>
+      {%- endfor %}
+      </tbody>
+    </table>
+    {%- endif %}
+  </section>
+  {%- endif %}
+
+  {%- if body_parts.size > 1 %}
+  <section>
+    <h2 id="detailed-description">Detailed description</h2>
+    {{ body_parts[1] }}
+  </section>
+  {%- endif %}
+
+  <section>
+    <h2 id="firmware-software">Firmware and software</h2>
+    {%- if rel.firmware %}
+    <p class="ds-callout">
+      {%- if rel.firmware.min %}<strong>Minimum firmware: <code>{{
+      rel.firmware.min }}</code>.</strong>{% endif %}
+      {{ rel.firmware.note }}
+    </p>
+    {%- endif %}
+    <p>Firmware and software are maintained and documented in their own
+      repositories.</p>
+    <table>
+      <thead>
+      <tr>
+        <th>Repository</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      {%- for r in product.repos %}
+      <tr>
+        <td><a href="{{ r.url }}">{{ r.label }}</a></td>
+        <td>{{ r.kind }}</td>
+        <td>{{ r.desc }}</td>
+      </tr>
+      {%- endfor %}
+      </tbody>
+    </table>
+    {%- if rel.protocols %}
+    <p>Protocols:
+      {%- for p in rel.protocols %}
+      <a href="{{ p.url | relative_url }}">{{ p.name }}</a>{% if p.version
+      %} <code>{{ p.version }}</code>{% endif %}{% unless forloop.last %},{%
+      endunless %}
+      {%- endfor %}
+    </p>
+    {%- endif %}
+  </section>
+
+  {%- if rel.bom %}
+  <section>
+    <h2 id="bom">Key components</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Part number</th>
+        <th>Manufacturer</th>
+        <th>Description</th>
+        <th class="num">Qty</th>
+      </tr>
+      </thead>
+      <tbody>
+      {%- for b in rel.bom %}
+      <tr>
+        <td><code>{{ b.mpn }}</code></td>
+        <td>{{ b.mfr }}</td>
+        <td>{{ b.desc }}</td>
+        <td class="num">{{ b.qty }}</td>
+      </tr>
+      {%- endfor %}
+      </tbody>
+    </table>
+  </section>
+  {%- endif %}
+
+  <section>
+    <h2 id="mechanical">Mechanical</h2>
+    <div class="ds-figure-placeholder ds-figure-placeholder--wide">Figure:
+      dimensioned drawing
+    </div>
+  </section>
+
+  {%- if rel.downloads %}
+  <section>
+    <h2 id="downloads">Design files</h2>
+    <ul class="ds-downloads">
+      {%- for d in rel.downloads %}
+      <li>
+        <a
+          href="{{ product_url | append: rel.slug | append: '/assets/' | append: d.file | relative_url }}">{{
+          d.label }}</a>
+        <span class="ds-filetype">{{ d.type }}</span>
+        <span class="ds-print-only ds-filename">{{ d.file }}</span>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endif %}
+
+  <section>
+    <h2 id="errata">Errata</h2>
+    {%- if rel.errata.size > 0 %}
+    {%- for e in rel.errata %}
+    <div class="ds-erratum">
+      <h3 id="erratum-{{ e.id | downcase }}">{{ e.id }}: {{ e.title }}</h3>
+      <p>{{ e.desc }}</p>
+      <p><strong>Workaround:</strong> {{ e.workaround }}</p>
+      {%- if e.fixed_in %}<p><strong>Fixed in:</strong> {{ e.fixed_in }}</p>
+      {% endif %}
+    </div>
+    {%- endfor %}
+    {%- else %}
+    <p>No known errata for {{ rel.name }}.</p>
+    {%- endif %}
+  </section>
+
+  <section>
+    <h2 id="release-history">Release history</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Release</th>
+        <th>Version</th>
+        <th>Released</th>
+        <th>Status</th>
+        <th>Changes</th>
+      </tr>
+      </thead>
+      <tbody>
+      {%- for key in rel_keys %}
+      {%- assign item = pdata[key] %}
+      <tr
+        {% if key== page.release %} class="ds-current" {% endif %}>
+        <td><a
+          href="{{ product_url | append: item.slug | append: '/' | relative_url }}">{{
+          item.name }}</a></td>
+        <td>{% if item.version %}<code>{{ item.version }}</code>{% endif %}</td>
+        <td>{{ item.released | date: "%Y-%m-%d" }}</td>
+        <td>{% include datasheet/status_badge.html status=item.status %}</td>
+        <td>
+          <ul class="ds-compact">{% for ch in item.changes %}
+            <li>{{ ch }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      {%- endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="ds-print-only ds-print-footer">
+    Information subject to change without notice.
+    Latest version of this document: {{ site.url | default:
+    'https://docs.scalpelspace.com' }}{{ product_url }}{{ rel.slug }}/
+  </footer>
+</article>

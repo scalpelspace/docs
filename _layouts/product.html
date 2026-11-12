@@ -1,0 +1,120 @@
+---
+layout: default
+---
+{%- comment -%}
+Product landing page: shared description, release picker/comparison,
+links to repositories and product-level guides.
+Front matter: product (key under _data/products).
+{%- endcomment -%}
+{%- assign pdata = site.data.products[page.product] -%}
+{%- assign product = pdata.product -%}
+{%- assign latest_key = product.releases | last -%}
+{%- assign latest = pdata[latest_key] -%}
+{%- assign rel_keys = product.releases | reverse -%}
+{%- capture product_url %}/products/{{ page.product }}/{% endcapture -%}
+
+<div class="product">
+  <header class="ds-head ds-head--product">
+    <div class="ds-title">
+      <p class="ds-kicker">{{ product.category }}</p>
+      <h1>{{ product.name }}</h1>
+      <p class="ds-tagline">{{ product.tagline }}</p>
+      {{ product.description | markdownify }}
+      <p>
+        <a class="btn btn-primary"
+           href="{{ product_url | append: latest.slug | append: '/' | relative_url }}">{{
+          latest.name }} datasheet (latest)</a>
+      </p>
+    </div>
+    <div class="ds-figure-placeholder">Figure: product photo</div>
+  </header>
+
+  {{ content }}
+
+  <h2 id="releases">Releases</h2>
+  <div class="ds-release-cards">
+    {%- for key in rel_keys %}
+    {%- assign item = pdata[key] %}
+    <a class="ds-release-card{% if key == latest_key %} is-latest{% endif %}"
+       href="{{ product_url | append: item.slug | append: '/' | relative_url }}">
+      <span class="ds-release-card__name">{{ item.name }}</span>
+      {% include datasheet/status_badge.html status=item.status %}
+      <span class="ds-release-card__meta">{% if item.version %}<code>{{ item.version }}</code> · {% endif %}Released {{ item.released | date: "%Y-%m-%d" }}</span>
+      <span class="ds-release-card__change">{{ item.changes | first }}</span>
+    </a>
+    {%- endfor %}
+  </div>
+
+  <h3 id="compare">Compare releases</h3>
+  <div class="ds-table-wrap">
+    <table class="ds-compare">
+      <thead>
+      <tr>
+        <th>Parameter</th>
+        {%- for key in product.releases %}
+        <th>{{ pdata[key].name }}</th>
+        {%- endfor %}
+      </tr>
+      </thead>
+      <tbody>
+      {%- for id in product.compare %}
+      {%- assign ref = latest.specs | where: "id", id | first %}
+      {%- if ref %}
+      <tr>
+        <td>{{ ref.param }}</td>
+        {%- assign prev = "" %}
+        {%- for key in product.releases %}
+        {%- assign row = pdata[key].specs | where: "id", id | first %}
+        {%- capture cell %}{% include datasheet/spec_value.html r=row %}{%
+        endcapture %}
+        <td
+          {% if forloop.index> 1 and cell != prev %} class="ds-diff"
+          title="Changed from previous release"{% endif %}>{{ cell }}
+        </td>
+        {%- assign prev = cell %}
+        {%- endfor %}
+      </tr>
+      {%- endif %}
+      {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="firmware-software">Firmware and software</h2>
+  <p>Maintained in their own repositories. Each datasheet notes firmware
+    compatibility for that release.</p>
+  <table>
+    <thead>
+    <tr>
+      <th>Repository</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%- for r in product.repos %}
+    <tr>
+      <td><a href="{{ r.url }}">{{ r.label }}</a></td>
+      <td>{{ r.kind }}</td>
+      <td>{{ r.desc }}</td>
+    </tr>
+    {%- endfor %}
+    </tbody>
+  </table>
+
+  {%- assign guides = site.pages | where: "parent", page.title | sort:
+  "nav_order" %}
+  {%- if guides.size > 0 %}
+  <h2 id="guides">Guides</h2>
+  <ul>
+    {%- for g in guides %}
+    <li>
+      <a href="{{ g.url | relative_url }}">{{ g.title }}</a>
+      {%- if g.applies_to %}
+      <span class="ds-applies-inline">({% for k in g.applies_to %}{{ pdata[k].name }}{% unless forloop.last %}, {% endunless %}{% endfor %})</span>
+      {%- endif %}
+    </li>
+    {%- endfor %}
+  </ul>
+  {%- endif %}
+</div>

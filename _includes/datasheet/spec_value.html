@@ -1,0 +1,13 @@
+{%- comment -%}
+Formats one spec row as a compact single value for comparison tables.
+Usage: {% include datasheet/spec_value.html r=row %}
+{%- endcomment -%}
+{%- assign r = include.r -%}
+{%- if r == nil -%}—
+{%- elsif r.value -%}{{ r.value }}
+{%- elsif r.min and r.max -%}{{ r.min }} – {{ r.max }} {{ r.unit }}
+{%- elsif r.typ and r.max -%}{{ r.typ }} {{ r.unit }} (max {{ r.max }})
+{%- elsif r.typ -%}{{ r.typ }} {{ r.unit }}
+{%- elsif r.max -%}≤ {{ r.max }} {{ r.unit }}
+{%- elsif r.min -%}≥ {{ r.min }} {{ r.unit }}
+{%- endif -%}
