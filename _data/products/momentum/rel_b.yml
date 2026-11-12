@@ -35,7 +35,7 @@ specs:
   - { id: supply_sel,  group: Power,          param: 5 V source selection,  value: "Automatic OR switch (TPS2116DRL), 5V pin has priority" }
   - { id: supply_prot, group: Power,          param: 5V pin protection,     value: "Optional Schottky (D1) and TVS (D2) diodes, not populated (JP1)" }
   - { id: v33,         group: Power,          param: 3.3 V rail,            value: "Onboard LDO, optional output on the 3.3V pin (JP7)" }
-  - { id: host_if,     group: Host interface, param: Interface,             value: Classic CAN, SPI or Serial }
+  - { id: host_if,     group: Host interface, param: Interface,             value: "Classic CAN, SPI or Serial" }
   - { id: can,         group: Host interface, param: CAN,                   value: "Classic CAN (default 500 kbps) onboard termination" }
   - { id: logic,       group: Host interface, param: SPI logic level,       value: "5 V (default) or 3.3 V (JP1)" }
   - { id: spi_cs,      group: Host interface, param: SPI CS pin,            value: "D10 (default) or D8 (JP6)" }
