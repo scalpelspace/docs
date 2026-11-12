@@ -259,13 +259,26 @@ tr.ds-current td {
   background: var(--ds-subtle);
 }
 
-.ds-compact {
+/* Compact list inside a table cell (release history changes). Uses native list
+   markers: the theme draws bullets as absolutely positioned. Elements can drift
+   away from their text inside vertically centred table cells when printed. */
+.datasheet ul.ds-compact {
   margin: 0;
-  padding-left: 1rem;
+  padding-left: 1.1rem;
+  list-style: disc outside;
 }
 
-.ds-compact li {
+.datasheet ul.ds-compact > li {
   margin: 0;
+}
+
+.datasheet ul.ds-compact > li::before {
+  content: none !important;
+  display: none !important;
+}
+
+.datasheet ul.ds-compact > li::marker {
+  color: var(--ds-muted);
 }
 
 /* ---------- Callouts, figures, lists ---------- */
