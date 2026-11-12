@@ -28,14 +28,10 @@ specs:
   - { id: vin,         group: Power,          param: Supply voltage,    cond: 5V pin, typ: 5.0, unit: V }
   - { id: logic,       group: Power,          param: Logic level,       value: "5 V (default) or 3.3 V (JP1)" }
   - { id: host_if,     group: Host interface, param: Interface,         value: SPI }
-  - { id: int,         group: Host interface, param: Interrupt,         value: "INT pin (optional, recommended)" }
-  - { id: can,         group: CAN,            param: CAN,               value: Classic CAN and CAN FD }
   - { id: controller,  group: CAN,            param: Controller,        value: "MCP2518FD, 40 MHz crystal" }
   - { id: transceiver, group: CAN,            param: Transceiver,       value: TJA1057BTK }
   - { id: termination, group: CAN,            param: Bus termination,   value: "Switch selectable 120 Ohm, split 2x 60 Ohm + centre-tap capacitor (SW1)" }
-  - { id: silent,      group: CAN,            param: Silent mode,       value: "Jumper selectable, listen-only (JP2)" }
   - { id: form,        group: Mechanical,     param: Form factor,       value: Breadboard-compatible breakout }
-  - { id: mount,       group: Mechanical,     param: Mounting,          value: 1x M2.5 mounting hole }
 
 connectors:
   - ref: J1

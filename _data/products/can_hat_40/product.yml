@@ -30,7 +30,3 @@ compare: [ can, controller, termination, logic ]
 # Firmware and software live in their own repositories. Docs only link to
 # them.
 repos:
-  - label: can_hat_40_pcb
-    kind: Hardware
-    url: https://github.com/scalpelspace/can_hat_40_pcb
-    desc: PCB design files and release notes.

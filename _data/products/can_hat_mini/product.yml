@@ -30,19 +30,7 @@ compare: [ can, controller, termination, logic ]
 # Firmware and software live in their own repositories. Docs only link to
 # them.
 repos:
-  - label: can_hat_mini_pcb
-    kind: Hardware
-    url: https://github.com/scalpelspace/can_hat_mini_pcb
-    desc: PCB design files and release notes.
   - label: scalpelspace_bus
     kind: Arduino library
     url: https://github.com/scalpelspace/scalpelspace_bus
     desc: ScalpelSpace unified CAN ID allocation scheme and device control.
-  - label: ACAN2517
-    kind: Third-party Arduino library
-    url: https://github.com/pierremolinaro/acan2517
-    desc: MCP2517FD/MCP2518FD driver, Classic CAN.
-  - label: ACAN2517FD
-    kind: Third-party Arduino library
-    url: https://github.com/pierremolinaro/acan2517FD
-    desc: MCP2517FD/MCP2518FD driver, CAN FD.
