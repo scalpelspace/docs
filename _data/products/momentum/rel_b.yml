@@ -32,7 +32,7 @@ features:
 specs:
   - { id: vin,         group: Power,          param: Supply voltage,        cond: 5V pin or USB-C, typ: 5.0, unit: V }
   - { id: i_supply,    group: Power,          param: Supply current,        cond: All sensors on,  typ: 30,  max: 300,  unit: mA }
-  - { id: supply_sel,  group: Power,          param: 5 V source selection,  value: "Automatic OR switch (TPS2116DRL), 5V pin has priority" }
+  - { id: supply_sel,  group: Power,          param: 5 V source selection,  value: "Automatic OR switch, 5V pin has priority" }
   - { id: supply_prot, group: Power,          param: 5V pin protection,     value: "Optional Schottky (D1) and TVS (D2) diodes, not populated (JP1)" }
   - { id: v33,         group: Power,          param: 3.3 V rail,            value: "Onboard LDO, optional output on the 3.3V pin (JP7)" }
   - { id: host_if,     group: Host interface, param: Interface,             value: "Classic CAN, SPI or Serial" }
@@ -42,7 +42,7 @@ specs:
   - { id: usb,         group: Host interface, param: USB,                   value: "USB-C, CP2102N USB-to-UART bridge" }
   - { id: imu,         group: Devices,        param: IMU,                   value: BNO086 }
   - { id: gnss,        group: Devices,        param: GNSS module,           value: SAM-M10Q }
-  - { id: baro,        group: Devices,        param: Barometer,             value: "BMP390, I2C address 0x76 (default) or 0x77 (JP5)" }
+  - { id: baro,        group: Devices,        param: Barometer,             value: BMP390 }
   - { id: form,        group: Mechanical,     param: Form factor,           value: "Uno-style shield" }
 
 connectors:

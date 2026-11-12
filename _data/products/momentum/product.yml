@@ -26,7 +26,7 @@ releases: [ rel_a, rel_b ]
 # Spec ids (from each release's `specs`) shown in the product page
 # release comparison table. Cells that differ from the previous release
 # are highlighted.
-compare: [ imu, supply_prot, usb_esd, usb_shield, logic, spi_cs, i_supply ]
+compare: [ imu, supply_prot ]
 
 # Firmware and software live in their own repositories. Docs only link to
 # them; per-release compatibility goes in each release file (`firmware`).

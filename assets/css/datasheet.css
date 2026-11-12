@@ -503,9 +503,13 @@ tr.ds-current td {
     font-size: 10pt;
   }
 
+  /* Keep links recognisable on paper and in saved PDFs (where they stay
+     clickable): accent colour plus underline. */
   a {
-    color: inherit !important;
-    text-decoration: none !important;
+    color: var(--ds-accent) !important;
+    text-decoration: underline !important;
+    text-decoration-thickness: 0.5pt !important;
+    text-underline-offset: 2pt;
   }
 
   .ds-print-only {
