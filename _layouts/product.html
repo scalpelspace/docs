@@ -44,7 +44,7 @@ Front matter: product (key under _data/products).
        href="{{ product_url | append: item.slug | append: '/' | relative_url }}">
       <span class="ds-release-card__name">{{ item.name }}</span>
       {% include datasheet/status_badge.html status=item.status %}
-      <span class="ds-release-card__meta">{% if item.version %}<code>{{ item.version }}</code> · {% endif %}Released {{ item.released | date: "%Y-%m-%d" }}</span>
+      <span class="ds-release-card__meta">{% if item.version %}<code>{{ item.version }}</code> · {% endif %}Released {{ item.released | date: "%Y-%m-%d" | default: "TBD" }}</span>
       <span class="ds-release-card__change">{{ item.changes | first }}</span>
     </a>
     {%- endfor %}

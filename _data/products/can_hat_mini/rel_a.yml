@@ -1,0 +1,77 @@
+name: Rel A
+slug: rel-a                       # URL segment: /products/can_hat_mini/rel-a/
+version: v0.1.1                   # code version, matches the internal git release tag
+status: active                    # preview | active | nrnd | obsolete
+# released: YYYY-MM-DD            # TODO: not stated in the README
+doc_id: DS-CAN-HAT-MINI-A
+doc_rev: "1.0"
+doc_updated: 2026-11-12
+marking: can_hat_mini_pcb v0.1.1  # silkscreen text identifying this release
+pcb: can_hat_mini_pcb v0.1.1
+
+# What changed relative to the previous release (shown in release history).
+changes:
+  - Initial release.
+
+features:
+  - "Miniature **breadboard-compatible** footprint for quick prototyping"
+  - "**SPI** host interface for Classic CAN and CAN FD via the MCP2518FD controller"
+  - "Switch selectable **bus termination** (split 2x 60 Ohm + centre-tap capacitor)"
+  - "Jumper selectable 5 V or 3.3 V **logic level** for the host interface"
+  - "Jumper selectable **silent mode** (listen-only) for bus monitoring"
+  - "1x **M2.5 mounting hole**"
+
+# Flat list; `group` controls table grouping, `id` links rows across
+# releases for comparison. Use min/typ/max/unit for numbers, or `value`
+# for text.
+specs:
+  - { id: vin,         group: Power,          param: Supply voltage,    cond: 5V pin, typ: 5.0, unit: V }
+  - { id: logic,       group: Power,          param: Logic level,       value: "5 V (default) or 3.3 V (JP1)" }
+  - { id: host_if,     group: Host interface, param: Interface,         value: SPI }
+  - { id: int,         group: Host interface, param: Interrupt,         value: "INT pin (optional, recommended)" }
+  - { id: can,         group: CAN,            param: CAN,               value: Classic CAN and CAN FD }
+  - { id: controller,  group: CAN,            param: Controller,        value: "MCP2518FD, 40 MHz crystal" }
+  - { id: transceiver, group: CAN,            param: Transceiver,       value: TJA1057BTK }
+  - { id: termination, group: CAN,            param: Bus termination,   value: "Switch selectable 120 Ohm, split 2x 60 Ohm + centre-tap capacitor (SW1)" }
+  - { id: silent,      group: CAN,            param: Silent mode,       value: "Jumper selectable, listen-only (JP2)" }
+  - { id: form,        group: Mechanical,     param: Form factor,       value: Breadboard-compatible breakout }
+  - { id: mount,       group: Mechanical,     param: Mounting,          value: 1x M2.5 mounting hole }
+
+connectors:
+  - ref: J1
+    name: 8-pin
+    desc: Host interface header (power and SPI).
+    pins:
+      - { pin: "1", name: 5V,   type: pwr, desc: 5 V supply }
+      - { pin: "2", name: GND,  type: pwr, desc: Ground }
+      - { pin: "3", name: SCK,  type: in,  desc: SPI clock }
+      - { pin: "4", name: CIPO, type: out, desc: "SPI controller in, peripheral out" }
+      - { pin: "5", name: COPI, type: in,  desc: "SPI controller out, peripheral in" }
+      - { pin: "6", name: CS,   type: in,  desc: SPI chip select }
+      - { pin: "7", name: GND,  type: pwr, desc: Ground (optional second ground) }
+      - { pin: "8", name: INT,  type: out, desc: Controller interrupt }
+  - ref: J2
+    name: CAN
+    desc: CAN bus connection.
+    pins:
+      - { pin: "1", name: GND,  type: pwr, desc: Ground }
+      - { pin: "2", name: CANH, type: io,  desc: CAN high }
+      - { pin: "3", name: CANL, type: io,  desc: CAN low }
+
+switches:
+  - { ref: SW1, name: CAN termination, desc: "1 + 2 = no termination, 2 + 3 = 120 Ohm termination" }
+  - { ref: JP1, name: V IO,            desc: "1 + 2 closed = 5 V, 2 + 3 closed = 3.3 V" }
+  - { ref: JP2, name: CAN silent,      desc: "Open = normal operation, closed = silent mode" }
+
+downloads:
+  - { label: Schematic, type: PDF,  file: can_hat_mini_rel-a_schematic.pdf }
+  - { label: Gerbers,   type: ZIP,  file: can_hat_mini_rel-a_gerber.zip }
+  - { label: 3D model,  type: STEP, file: can_hat_mini_rel-a.step }
+
+bom:
+  - { mpn: MCP2518FDT-E/QBB,       mfr: Microchip Technology, desc: CAN FD to SPI controller,       qty: 1 }
+  - { mpn: TJA1057BTK,             mfr: NXP USA Inc.,         desc: CAN bus transceiver,            qty: 1 }
+  - { mpn: JS202011JAQN,           mfr: C&K,                  desc: "DPDT slide switch, right angle", qty: 1 }
+  - { mpn: ECS-400-10-37B2-CKY-TR, mfr: ECS Inc.,             desc: 40 MHz crystal,                 qty: 1 }
+
+errata: [ ]

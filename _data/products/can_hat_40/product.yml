@@ -1,0 +1,35 @@
+# Product-level data: facts shared by every hardware release of this product.
+# Release-specific data lives next to this file, one file per release
+# (rel_a.yml, ...). File names are the release keys.
+
+name: SPI-CAN 40-pin Hat
+tagline: CAN FD hat for 40-pin single-board computers
+codename: can_hat_40
+category: CAN interfaces
+
+# Photo shown on product cards and the product page (site-relative path).
+#image: /products/can_hat_40/rel-a/assets/can_hat_40_rel-a-top.png
+
+# Shared description, shown on the product page and at the top of every
+# release's datasheet overview. Markdown allowed.
+description: >-
+  A 40-pin (2x20) GPIO hat that adds a CAN bus interface to single-board
+  computers such as the Raspberry Pi series. It seats directly on the standard
+  40-pin header and bridges the host's SPI bus to a CAN transceiver, so any
+  compatible SBC can talk CAN without an integrated controller.
+
+# Oldest first. The last entry is treated as the latest release.
+releases: [ rel_a ]
+
+# Spec ids (from each release's `specs`) shown in the product page
+# release comparison table. Cells that differ from the previous release
+# are highlighted.
+compare: [ can, controller, termination, logic ]
+
+# Firmware and software live in their own repositories. Docs only link to
+# them.
+repos:
+  - label: can_hat_40_pcb
+    kind: Hardware
+    url: https://github.com/scalpelspace/can_hat_40_pcb
+    desc: PCB design files and release notes.
