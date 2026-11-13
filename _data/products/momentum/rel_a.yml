@@ -1,7 +1,7 @@
 name: Rel A
 slug: rel-a                   # URL segment: /products/momentum/rel-a/
 version: v0.1.1               # code version, matches the internal git release tag
-status: nrnd                  # preview | active | nrnd | obsolete
+status: nrnd                  # preview | preproduction | active | nrnd | obsolete
 released: 2025-06-16
 doc_id: DS-MOMENTUM-A
 doc_rev: "1.0"

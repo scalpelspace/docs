@@ -137,8 +137,13 @@
   color: var(--ds-ok);
 }
 
-.ds-badge--preview {
+.ds-badge--preview,
+.ds-badge--preproduction {
   color: var(--ds-info);
+}
+
+.ds-banner--preproduction {
+  border-left-color: var(--ds-info);
 }
 
 .ds-badge--nrnd {

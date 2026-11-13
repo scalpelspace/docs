@@ -1,7 +1,7 @@
 name: Rel B
 slug: rel-b                   # URL segment: /products/momentum/rel-b/
 version: v0.2.0               # code version, matches the internal git release tag
-status: active                # preview | active | nrnd | obsolete
+status: active                # preview | preproduction | active | nrnd | obsolete
 released: 2025-08-03
 doc_id: DS-MOMENTUM-B
 doc_rev: "1.0"
