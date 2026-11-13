@@ -58,6 +58,13 @@ The marker is an HTML comment containing only the word: details
   </div>
   {%- endif %}
 
+  {%- if rel.status == "preproduction" %}
+  <div class="ds-banner ds-banner--preproduction">
+    <strong>Pre-production release.</strong> This is an early release ahead of
+    production. Specifications and design details may change.
+  </div>
+  {%- endif %}
+
   <header class="ds-head">
     <div class="ds-title">
       <p class="ds-kicker">{{ product.category }} · Datasheet</p>

@@ -1,5 +1,7 @@
 {%- case include.status -%}
 {%- when "active" -%}<span class="ds-badge ds-badge--active">Active</span>
+{%- when "preproduction" -%}<span class="ds-badge ds-badge--preproduction"
+                                  title="Early release, built in small quantities ahead of production. Details may change.">Pre-production</span>
 {%- when "preview" -%}<span class="ds-badge ds-badge--preview">Preview</span>
 {%- when "nrnd" -%}<span class="ds-badge ds-badge--nrnd"
                          title="Not recommended for new designs">NRND</span>

@@ -1,7 +1,7 @@
 name: Rel A
 slug: rel-a                       # URL segment: /products/can_hat_mini/rel-a/
 version: v0.1.1                   # code version, matches the internal git release tag
-status: active                    # preview | active | nrnd | obsolete
+status: active                    # preview | preproduction | active | nrnd | obsolete
 released: 2026-05-03
 doc_id: DS-CAN-HAT-MINI-A
 doc_rev: "1.0"

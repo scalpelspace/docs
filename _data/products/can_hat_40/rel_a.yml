@@ -1,7 +1,7 @@
 name: Rel A
 slug: rel-a                     # URL segment: /products/can_hat_40/rel-a/
 version: v0.1.0                 # code version, matches the internal git release tag
-status: active                  # preview | active | nrnd | obsolete
+status: active                  # preview | preproduction | active | nrnd | obsolete
 released: 2025-08-03
 doc_id: DS-CAN-HAT-40-A
 doc_rev: "1.0"
