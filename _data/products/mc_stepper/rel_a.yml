@@ -5,7 +5,7 @@ status: preproduction  # preview | preproduction | active | nrnd | obsolete
 released: 2026-09-21
 doc_id: DS-MC-STEPPER-A
 doc_rev: "1.0"
-doc_updated: 2026-11-12
+#doc_updated: 2026-11-12  # TODO: Shows "WIP" while unset.
 marking: mc_stepper_pcb v0.3.0  # Silkscreen text.
 pcb: mc_stepper_pcb v0.3.0
 

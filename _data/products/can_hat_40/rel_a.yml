@@ -5,7 +5,7 @@ status: active  # preview | preproduction | active | nrnd | obsolete
 released: 2025-08-03
 doc_id: DS-CAN-HAT-40-A
 doc_rev: "1.0"
-doc_updated: 2026-11-12
+#doc_updated: 2026-11-12  # TODO: Shows "WIP" while unset.
 marking: can_hat_40_pcb v0.1.0  # Silkscreen text.
 pcb: can_hat_40_pcb v0.1.0
 

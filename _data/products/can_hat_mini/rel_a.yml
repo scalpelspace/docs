@@ -5,7 +5,7 @@ status: active  # preview | preproduction | active | nrnd | obsolete
 released: 2026-05-03
 doc_id: DS-CAN-HAT-MINI-A
 doc_rev: "1.0"
-doc_updated: 2026-11-12
+#doc_updated: 2026-11-12  # TODO: Shows "WIP" while unset.
 marking: can_hat_mini_pcb v0.1.1  # Silkscreen text.
 pcb: can_hat_mini_pcb v0.1.1
 

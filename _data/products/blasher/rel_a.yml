@@ -5,7 +5,7 @@ status: preview  # preview | preproduction | active | nrnd | obsolete
 released: 2026-09-21
 doc_id: DS-BLASHER-A
 doc_rev: "1.0"
-doc_updated: 2026-11-12
+#doc_updated: 2026-11-12  # TODO: Shows "WIP" while unset.
 marking: blasher_pcb v0.2.0  # Silkscreen text.
 pcb: blasher_pcb v0.2.0
 
