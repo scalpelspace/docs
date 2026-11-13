@@ -5,7 +5,7 @@ status: nrnd  # preview | preproduction | active | nrnd | obsolete
 released: 2025-06-16
 doc_id: DS-MOMENTUM-A
 doc_rev: "1.0"
-doc_updated: 2026-11-12
+#doc_updated: 2026-11-12  # TODO: Shows "WIP" while unset.
 marking: momentum_pcb v0.1.1  # Silkscreen text.
 pcb: momentum_pcb v0.1.1
 

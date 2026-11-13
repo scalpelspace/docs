@@ -88,7 +88,7 @@ The marker is an HTML comment containing only the word: details
       <dd><code>{{ rel.marking }}</code></dd>
       <dt>Document</dt>
       <dd>{{ rel.doc_id }} rev {{ rel.doc_rev }}, {{ rel.doc_updated | date:
-        "%Y-%m-%d" }}
+        "%Y-%m-%d" | default: "WIP" }}
       </dd>
     </dl>
   </header>
