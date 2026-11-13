@@ -1,0 +1,44 @@
+# Product-level data: facts shared by every hardware release of this product.
+# Release-specific data lives next to this file, one file per release
+# (rel_a.yml, ...). File names are the release keys.
+
+name: MC Stepper
+tagline: Closed-loop stepper motor controller
+codename: mc_stepper
+category: Motor control
+
+# Photo shown on product cards and the product page (site-relative path).
+# TODO TODO TODO UNCOMMENT:
+#image: /products/mc_stepper/rel-a/assets/mc_stepper_rel-a-top.png
+
+# Shared description, shown on the product page and at the top of every
+# release's datasheet overview. Markdown allowed.
+description: >-
+  A compact stepper motor controller node that bridges a CAN bus host to a
+  bipolar stepper motor. It pairs a TMC2209 motor driver with an AS5147P
+  magnetic rotary encoder for closed-loop position and velocity control,
+  letting a single CAN bus drive and monitor multiple motors.
+
+# Oldest first. The last entry is treated as the latest release.
+releases: [ rel_a ]
+
+# Spec ids (from each release's `specs`) shown in the product page
+# release comparison table. Cells that differ from the previous release
+# are highlighted.
+compare: [ vin, driver, encoder, termination ]
+
+# Firmware and software live in their own repositories. Docs only link to
+# them; per-release compatibility goes in each release file (`firmware`).
+repos:
+  - label: mc_stepper
+    kind: Firmware
+    url: https://github.com/scalpelspace/mc_stepper
+    desc: Official STM32L432KC firmware, configuration macros and UART command reference.
+  - label: mc_stepper_driver
+    kind: Driver
+    url: https://github.com/scalpelspace/mc_stepper_driver
+    desc: "Host driver (CAN), source-of-truth DBC definition and message table."
+  - label: scalpelspace_bus
+    kind: Arduino library
+    url: https://github.com/scalpelspace/scalpelspace_bus
+    desc: Arduino library (CAN).

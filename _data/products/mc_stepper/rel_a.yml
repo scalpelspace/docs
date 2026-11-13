@@ -1,0 +1,102 @@
+name: Rel A
+slug: rel-a                     # URL segment: /products/mc_stepper/rel-a/
+version: v0.3.0                 # code version, matches the internal git release tag
+status: active                  # preview | active | nrnd | obsolete
+released: 2026-09-21
+doc_id: DS-MC-STEPPER-A
+doc_rev: "1.0"
+doc_updated: 2026-11-12
+marking: mc_stepper_pcb v0.3.0  # silkscreen text identifying this release
+pcb: mc_stepper_pcb v0.3.0
+
+# What changed relative to the previous release (shown in release history).
+changes:
+  - Initial release.
+
+features:
+  - "**Closed-loop position and velocity control** via the AS5147P 14-bit magnetic rotary encoder"
+  - "**Bipolar stepper motor driver** via the TMC2209, with runtime configurable current and microstep resolution"
+  - "**StallGuard** stall detection with configurable threshold"
+  - "**Classic CAN** (500 kbps) host interface with dynamic node ID allocation, driven by an STM32L432KC"
+  - "Single **power and CAN** connector, up to 29 V input"
+  - "**UART serial interface** for development, debug and configuration, plus SWD via Tag-Connect"
+  - "**GPIO connector** with 3.3 V supply for custom hardware"
+  - "Addressable **RGB LED** (WS2812B-2020) for status display"
+
+# Flat list; `group` controls table grouping, `id` links rows across
+# releases for comparison. Use min/typ/max/unit for numbers, or `value`
+# for text.
+specs:
+  - { id: vin,         group: Power,          param: Supply voltage,     cond: "VIN", min: 6, typ: 12, max: 29, unit: V }
+  - { id: i_gpio,      group: Power,          param: GPIO 3.3 V output,  cond: "Approximate, thermally limited", max: 200, unit: mA }
+  - { id: host_if,     group: Host interface, param: Interface,          value: "Classic CAN, UART serial for debug" }
+  - { id: can,         group: Host interface, param: CAN,                value: "Classic CAN, 500 kbps (87.5% sample point)" }
+  - { id: termination, group: Host interface, param: Bus termination,    value: "Optional split 2x 60 Ohm + 4.7 nF, not populated (R4, R5, C14)" }
+  - { id: uart,        group: Host interface, param: UART,               value: "USART1, 115200 bps, 3.3 V logic" }
+  - { id: driver,      group: Devices,        param: Motor driver,       value: "TMC2209 driver" }
+  - { id: encoder,     group: Devices,        param: Encoder,            value: "AS5147P absolute magnetic" }
+  - { id: form,        group: Mechanical,     param: Form factor,        value: "NEMA 17 back plate-style" }
+
+connectors:
+  - { ref: J1, name: Tag-Connect TC2050, desc: SWD programming/debug connector. }
+  - ref: J2
+    name: UART breakout
+    desc: "1x5, 2.54 mm pitch. Serial interface and UART bootloader control."
+    pins:
+      - { pin: "1", name: USART1_TX, type: out, desc: UART transmit }
+      - { pin: "2", name: USART1_RX, type: in,  desc: UART receive }
+      - { pin: "3", name: GND,       type: pwr, desc: Ground }
+      - { pin: "4", name: BOOT0,     type: in,  desc: "Assert high to enter the bootloader on reset" }
+      - { pin: "5", name: NRESET,    type: in,  desc: STM32 reset }
+  - ref: J3
+    name: Power and CAN
+    desc: "1x4 Molex Nano-Fit, 2.5 mm pitch. Supply input and CAN bus."
+    pins:
+      - { pin: "1", name: CANH, type: io,  desc: CAN high }
+      - { pin: "2", name: CANL, type: io,  desc: CAN low }
+      - { pin: "3", name: GND,  type: pwr, desc: Ground }
+      - { pin: "4", name: VIN,  type: pwr, desc: "Supply input, 29 V maximum" }
+  - ref: J4
+    name: Motor
+    desc: "1x4 JST PA, 2 mm pitch. Bipolar stepper motor coils."
+    pins:
+      - { pin: "1", name: A+, type: out, desc: Coil A positive }
+      - { pin: "2", name: A-, type: out, desc: Coil A negative }
+      - { pin: "3", name: B+, type: out, desc: Coil B positive }
+      - { pin: "4", name: B-, type: out, desc: Coil B negative }
+  - ref: J5
+    name: GPIO
+    desc: "1x4 JST GH, 1.25 mm pitch. Custom hardware connections."
+    pins:
+      - { pin: "1", name: 3V3,   type: pwr, desc: "3.3 V LDO output, approximately 200 mA available" }
+      - { pin: "2", name: GND,   type: pwr, desc: Ground }
+      - { pin: "3", name: GPIO1, type: io,  desc: General purpose I/O }
+      - { pin: "4", name: GPIO2, type: io,  desc: General purpose I/O }
+
+leds:
+  - { name: WS2812B-2020 LED, mark: None, desc: RGB addressable LED }
+
+firmware:
+  note: >-
+    The mc_stepper firmware supports both the AS5047P and AS5147P encoders
+    (source files keep the "AS5047P" naming). Flash over the UART bootloader
+    or over SWD (see Detailed description).
+
+protocols:
+  - { name: ScalpelSpace CAN Protocol, url: /protocols/can_driver/ }
+
+downloads:
+  - { label: Schematic, type: PDF,  file: mc_stepper_rel-a_schematic.pdf }
+  - { label: Gerbers,   type: ZIP,  file: mc_stepper_rel-a_gerber.zip }
+  - { label: 3D model,  type: STEP, file: mc_stepper_rel-a.step }
+
+bom:
+  - { mpn: STM32L432KC,   mfr: STMicroelectronics,                   desc: 32-bit MCU,                qty: 1 }
+  - { mpn: TMC2209,       mfr: Analog Devices Inc./Maxim Integrated, desc: Bipolar motor driver,      qty: 1 }
+  - { mpn: AS5147P,       mfr: ams-OSRAM USA INC.,                   desc: Magnetic rotary encoder,   qty: 1 }
+  - { mpn: TJA1057BTK,    mfr: NXP USA Inc.,                         desc: CAN bus transceiver,       qty: 1 }
+  - { mpn: LMR51610XDBVR, mfr: Texas Instruments,                    desc: 5 V buck converter,        qty: 1 }
+  - { mpn: TLV77333PDBVR, mfr: Texas Instruments,                    desc: 3.3 V LDO (300 mA),        qty: 1 }
+  - { mpn: WS2812B-2020,  mfr: (Various),                            desc: PWM addressable RGB LED,   qty: 1 }
+
+errata: [ ]
