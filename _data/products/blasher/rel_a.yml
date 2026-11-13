@@ -1,0 +1,77 @@
+name: Rel A
+slug: rel-a                     # URL segment: /products/blasher/rel-a/
+version: v0.2.0                 # code version, matches the internal git release tag
+status: preview                 # preview | preproduction | active | nrnd | obsolete
+released: 2026-09-21
+doc_id: DS-BLASHER-A
+doc_rev: "1.0"
+doc_updated: 2026-11-12
+marking: blasher_pcb v0.2.0     # silkscreen text identifying this release
+pcb: blasher_pcb v0.2.0
+
+# What changed relative to the previous release (shown in release history).
+changes:
+  - Initial release.
+
+features:
+  - "**USB-C to UART** bridge via the CP2102N"
+  - "Standard 5-pin **UART breakout** with `BOOT0` and `NRESET` for UART bootloader flashing"
+  - "Switchable **DTR control of BOOT0** for automatic bootloader entry"
+  - "In-browser **firmware flashing and serial monitor** with the Blasher web app"
+  - "**NRESET button** for manual target reset"
+  - "**3.3 V logic**, from an onboard LDO"
+  - "**RX, TX and power** status LEDs"
+  - "USB **ESD protection** (USBLC6-2P6)"
+
+# Flat list; `group` controls table grouping, `id` links rows across
+# releases for comparison. Use min/typ/max/unit for numbers, or `value`
+# for text.
+specs:
+  - { id: supply,    group: Power,            param: Supply,           value: "5 V from USB-C" }
+  - { id: v33,       group: Power,            param: 3.3 V rail,       value: "Onboard LDO (TLV77133)" }
+  - { id: logic,     group: Power,            param: Logic level,      value: 3.3 V }
+  - { id: usb,       group: Host interface,   param: USB,              value: USB-C }
+  - { id: bridge,    group: Host interface,   param: USB-to-UART,      value: "CP2102N (requires the Silicon Labs CP210x VCP driver)" }
+  - { id: target_if, group: Target interface, param: Connector,        value: "5-pin UART breakout, 2.54 mm pitch" }
+  - { id: boot,      group: Target interface, param: Bootloader entry, value: "BOOT0 via CP2102N DTR (SW1), NRESET button (SW2)" }
+
+connectors:
+  - { ref: J1, name: USB-C, desc: "USB-to-serial programming/debug, 5 V supply input." }
+  - ref: J2
+    name: UART breakout
+    desc: "1x5, 2.54 mm pitch. Connects to the target's UART breakout, pin for pin."
+    pins:
+      - { pin: "1", name: USART1_TX, type: in,  desc: "Target UART transmit" }
+      - { pin: "2", name: USART1_RX, type: out, desc: "Target UART receive" }
+      - { pin: "3", name: GND,       type: pwr, desc: Ground }
+      - { pin: "4", name: BOOT0,     type: out, desc: "Target BOOT0" }
+      - { pin: "5", name: NRESET,    type: out, desc: "Target reset" }
+
+switches:
+  - { ref: SW1, name: BOOT0 DTR bridge, desc: "Closed = CP2102N DTR BOOT0 control, open = manual BOOT0" }
+  - { ref: SW2, name: NRESET button,    desc: "Push to set NRESET low" }
+
+leds:
+  - { name: UART RX,     mark: 'Silkscreen "D1 RX"', desc: "Amber LED: blinking = receiving data" }
+  - { name: UART TX,     mark: 'Silkscreen "D2 TX"', desc: "Green LED: blinking = transmitting data" }
+  - { name: 3.3 V power, mark: 'Silkscreen "D3"',    desc: "Amber LED: on = 3.3 V net high" }
+
+firmware:
+  note: >-
+    Blasher carries no firmware of its own. Use it with the Blasher web app
+    (see Detailed description), which flashes a target over the STM32 UART
+    bootloader and provides a serial monitor.
+
+downloads:
+  - { label: Schematic, type: PDF,  file: blasher_rel-a_schematic.pdf }
+  - { label: Gerbers,   type: ZIP,  file: blasher_rel-a_gerber.zip }
+  - { label: 3D model,  type: STEP, file: blasher_rel-a.step }
+
+bom:
+  - { mpn: CP2102N-A02-GQFN24, mfr: Silicon Labs,       desc: USB 2.0 to UART interface, qty: 1 }
+  - { mpn: USBLC6-2P6,         mfr: STMicroelectronics, desc: USB ESD protection,        qty: 1 }
+  - { mpn: TLV77133PDBVR,      mfr: Texas Instruments,  desc: 3.3 V LDO,                 qty: 1 }
+  - { mpn: SN74LVC1G04DCK,     mfr: Texas Instruments,  desc: DTR inverter,              qty: 1 }
+  - { mpn: "2171790001",       mfr: Molex,              desc: USB-C receptacle,          qty: 1 }
+
+errata: [ ]
