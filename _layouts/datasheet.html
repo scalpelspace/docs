@@ -326,6 +326,10 @@ The marker is an HTML comment containing only the word: details
   </section>
   {%- endif %}
 
+  {%- assign has_repos = false %}
+  {%- if product.repos and product.repos.size > 0 %}{% assign has_repos = true
+  %}{% endif %}
+  {%- if has_repos or rel.firmware or rel.protocols %}
   <section>
     <h2 id="firmware-software">Firmware and software</h2>
     {%- if rel.firmware %}
@@ -335,6 +339,7 @@ The marker is an HTML comment containing only the word: details
       {{ rel.firmware.note }}
     </p>
     {%- endif %}
+    {%- if has_repos %}
     <p>Firmware and software are maintained and documented in their own
       repositories.</p>
     <table>
@@ -355,6 +360,7 @@ The marker is an HTML comment containing only the word: details
       {%- endfor %}
       </tbody>
     </table>
+    {%- endif %}
     {%- if rel.protocols %}
     <p>Protocols:
       {%- for p in rel.protocols %}
@@ -365,6 +371,7 @@ The marker is an HTML comment containing only the word: details
     </p>
     {%- endif %}
   </section>
+  {%- endif %}
 
   {%- if rel.bom %}
   <section>

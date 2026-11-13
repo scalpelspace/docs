@@ -1,15 +1,15 @@
 name: Rel A
-slug: rel-a                       # URL segment: /products/can_hat_mini/rel-a/
-version: v0.1.1                   # code version, matches the internal git release tag
-status: active                    # preview | preproduction | active | nrnd | obsolete
+slug: rel-a
+version: v0.1.1  # Matches the PCB git release tag.
+status: active  # preview | preproduction | active | nrnd | obsolete
 released: 2026-05-03
 doc_id: DS-CAN-HAT-MINI-A
 doc_rev: "1.0"
 doc_updated: 2026-11-12
-marking: can_hat_mini_pcb v0.1.1  # silkscreen text identifying this release
+marking: can_hat_mini_pcb v0.1.1  # Silkscreen text.
 pcb: can_hat_mini_pcb v0.1.1
 
-# What changed relative to the previous release (shown in release history).
+# Changes since the previous release (shown in release history).
 changes:
   - Initial release.
 
@@ -21,9 +21,8 @@ features:
   - "Jumper selectable **silent mode** (listen-only) for bus monitoring"
   - "1x **M2.5 mounting hole**"
 
-# Flat list; `group` controls table grouping, `id` links rows across
-# releases for comparison. Use min/typ/max/unit for numbers, or `value`
-# for text.
+# `group` sets the table grouping; `id` matches rows across releases.
+# Use min/typ/max/unit for numbers, or `value` for text.
 specs:
   - { id: vin,         group: Power,          param: Supply voltage,    cond: 5V pin, typ: 5.0, unit: V }
   - { id: logic,       group: Power,          param: Logic level,       value: "5 V (default) or 3.3 V (JP1)" }

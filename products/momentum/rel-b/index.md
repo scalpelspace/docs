@@ -98,8 +98,9 @@ The STM32L432KC can be flashed in 3 different ways:
 2. Hands-free UART bootloader via USB-C (CP2102N USB-to-UART).
 3. Manual BOOT0 jumper with UART bootloader via USB-C (CP2102N USB-to-UART).
 
-For the USB-C UART bootloader interface, the flashing software
-[pyblasher](https://github.com/scalpelspace/pyblasher) is highly recommended.
+For the USB-C UART bootloader interface, the flashing web app
+[blasher.scalpelspace.com](https://blasher.scalpelspace.com) is highly
+recommended.
 
 All three options are available by default, however **options 1 and 2 are
 suggested**.
