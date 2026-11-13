@@ -1,34 +1,29 @@
-# Product-level data: facts shared by every hardware release of this product.
-# Release-specific data lives next to this file, one file per release
-# (rel_a.yml, ...). File names are the release keys.
+# Product data shared by every release. Each release has its own file next
+# to this one (rel_a.yml, ...); the file name is the release key.
 
 name: MC Stepper
 tagline: Closed-loop stepper motor controller
 codename: mc_stepper
 category: Motor control
 
-# Photo shown on product cards and the product page (site-relative path).
+# Photo for the product cards and product page.
 # TODO TODO TODO UNCOMMENT:
 #image: /products/mc_stepper/rel-a/assets/mc_stepper_rel-a-top.png
 
-# Shared description, shown on the product page and at the top of every
-# release's datasheet overview. Markdown allowed.
+# Shown on the product page and at the top of every datasheet overview.
 description: >-
   A compact stepper motor controller node that bridges a CAN bus host to a
   bipolar stepper motor. It pairs a TMC2209 motor driver with an AS5147P
   magnetic rotary encoder for closed-loop position and velocity control,
   letting a single CAN bus drive and monitor multiple motors.
 
-# Oldest first. The last entry is treated as the latest release.
+# Oldest first. The last entry is the latest release.
 releases: [ rel_a ]
 
-# Spec ids (from each release's `specs`) shown in the product page
-# release comparison table. Cells that differ from the previous release
-# are highlighted.
+# Spec ids shown in the product page's release comparison table.
 compare: [ vin, driver, encoder, termination ]
 
-# Firmware and software live in their own repositories. Docs only link to
-# them; per-release compatibility goes in each release file (`firmware`).
+# Links to firmware and software, which live in their own repositories.
 repos:
   - label: mc_stepper
     kind: Firmware

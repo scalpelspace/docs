@@ -1,34 +1,29 @@
-# Product-level data: facts shared by every hardware release of this product.
-# Release-specific data lives next to this file, one file per release
-# (rel_a.yml, ...). File names are the release keys.
+# Product data shared by every release. Each release has its own file next
+# to this one (rel_a.yml, ...); the file name is the release key.
 
 name: SPI-CAN Breakout
 tagline: Breadboard-friendly CAN FD breakout for SPI hosts
 codename: can_hat_mini
 category: CAN interfaces
 
-# Photo shown on product cards and the product page (site-relative path).
+# Photo for the product cards and product page.
 # TODO TODO TODO UNCOMMENT:
 #image: /products/can_hat_mini/rel-a/assets/can_hat_mini_rel-a-top.png
 
-# Shared description, shown on the product page and at the top of every
-# release's datasheet overview. Markdown allowed.
+# Shown on the product page and at the top of every datasheet overview.
 description: >-
   A small-footprint, breadboard-friendly breakout board that bridges an SPI
   host to a CAN bus. It exposes a standard SPI interface on one side and a CAN
   transceiver on the other, letting any microcontroller with SPI talk CAN
   without an integrated controller.
 
-# Oldest first. The last entry is treated as the latest release.
+# Oldest first. The last entry is the latest release.
 releases: [ rel_a ]
 
-# Spec ids (from each release's `specs`) shown in the product page
-# release comparison table. Cells that differ from the previous release
-# are highlighted.
+# Spec ids shown in the product page's release comparison table.
 compare: [ can, controller, termination, logic ]
 
-# Firmware and software live in their own repositories. Docs only link to
-# them.
+# Links to firmware and software, which live in their own repositories.
 repos:
   - label: scalpelspace_bus
     kind: Arduino library

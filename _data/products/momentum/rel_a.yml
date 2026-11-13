@@ -1,15 +1,15 @@
 name: Rel A
-slug: rel-a                   # URL segment: /products/momentum/rel-a/
-version: v0.1.1               # code version, matches the internal git release tag
-status: nrnd                  # preview | preproduction | active | nrnd | obsolete
+slug: rel-a
+version: v0.1.1  # Matches the PCB git release tag.
+status: nrnd  # preview | preproduction | active | nrnd | obsolete
 released: 2025-06-16
 doc_id: DS-MOMENTUM-A
 doc_rev: "1.0"
 doc_updated: 2026-11-12
-marking: momentum_pcb v0.1.1  # silkscreen text identifying this release
+marking: momentum_pcb v0.1.1  # Silkscreen text.
 pcb: momentum_pcb v0.1.1
 
-# What changed relative to the previous release (shown in release history).
+# Changes since the previous release (shown in release history).
 changes:
   - Initial release.
 
@@ -23,9 +23,8 @@ features:
   - "Dual **5 V source** (5V pin or USB-C) with automatic switching"
   - "Jumper selectable **5 V or 3.3 V logic level** on the SPI interface"
 
-# Flat list; `group` controls table grouping, `id` links rows across
-# releases for comparison. Use min/typ/max/unit for numbers, or `value`
-# for text.
+# `group` sets the table grouping; `id` matches rows across releases.
+# Use min/typ/max/unit for numbers, or `value` for text.
 specs:
   - { id: vin,         group: Power,          param: Supply voltage,        cond: 5V pin or USB-C, typ: 5.0, unit: V }
   - { id: i_supply,    group: Power,          param: Supply current,        cond: All sensors on,  typ: 30,  max: 300,  unit: mA }
@@ -86,16 +85,16 @@ batteries:
 
 firmware:
   note: >-
-    The momentum firmware supports this release. Flash over USB-C with
-    pyblasher or over SWD (see Detailed description).
+    The momentum firmware supports this release. Flash over USB-C with blasher
+    or over SWD (see Detailed description).
 
 protocols:
   - { name: ScalpelSpace CAN Protocol, url: /protocols/can_driver/ }
 
 downloads:
-  - { label: Schematic,    type: PDF,  file: momentum_rel-a_schematic.pdf }
-  - { label: Gerbers, type: ZIP, file: momentum_rel-a_gerbers.zip }
-  - { label: 3D model,     type: STEP, file: momentum_rel-a.step }
+  - { label: Schematic, type: PDF,  file: momentum_rel-a_schematic.pdf }
+  - { label: Gerbers,   type: ZIP,  file: momentum_rel-a_gerbers.zip }
+  - { label: 3D model,  type: STEP, file: momentum_rel-a.step }
 
 bom:
   - { mpn: STM32L432KC,         mfr: STMicroelectronics,        desc: 32-bit MCU,                          qty: 1 }

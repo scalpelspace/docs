@@ -1,18 +1,16 @@
-# Product-level data: facts shared by every hardware release of this product.
-# Release-specific data lives next to this file, one file per release
-# (rel_a.yml, ...). File names are the release keys.
+# Product data shared by every release. Each release has its own file next
+# to this one (rel_a.yml, ...); the file name is the release key.
 
 name: Blasher
 tagline: USB-C firmware flash and utility tool
 codename: blasher
 category: Tools
 
-# Photo shown on product cards and the product page (site-relative path).
+# Photo for the product cards and product page.
 # TODO TODO TODO UNCOMMENT:
 #image: /products/blasher/rel-a/assets/blasher_rel-a-top.png
 
-# Shared description, shown on the product page and at the top of every
-# release's datasheet overview. Markdown allowed.
+# Shown on the product page and at the top of every datasheet overview.
 description: >-
   A basic firmware flash and utility tool. It bridges a USB-C host to the
   standard ScalpelSpace 5-pin `UART breakout` through a CP2102N USB-to-UART
@@ -20,18 +18,15 @@ description: >-
   bootloader. Built for use with the Blasher web app at
   [blasher.scalpelspace.com](https://blasher.scalpelspace.com).
 
-# Oldest first. The last entry is treated as the latest release.
+# Oldest first. The last entry is the latest release.
 releases: [ rel_a ]
 
-# Spec ids (from each release's `specs`) shown in the product page
-# release comparison table. Cells that differ from the previous release
-# are highlighted.
+# Spec ids shown in the product page's release comparison table.
 compare: [ bridge, logic, target_if ]
 
-# Firmware and software live in their own repositories. Docs only link to
-# them.
+# Links to firmware and software, which live in their own repositories.
 repos:
   - label: blasher.scalpelspace.com
     kind: Web app
     url: https://blasher.scalpelspace.com
-    desc: "Main tool: in-browser firmware flashing over the STM32 UART bootloader and a serial monitor."
+    desc: "In-browser firmware flashing over the STM32 UART bootloader and a serial monitor."

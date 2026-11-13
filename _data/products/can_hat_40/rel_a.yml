@@ -1,15 +1,15 @@
 name: Rel A
-slug: rel-a                     # URL segment: /products/can_hat_40/rel-a/
-version: v0.1.0                 # code version, matches the internal git release tag
-status: active                  # preview | preproduction | active | nrnd | obsolete
+slug: rel-a
+version: v0.1.0  # Matches the PCB git release tag.
+status: active  # preview | preproduction | active | nrnd | obsolete
 released: 2025-08-03
 doc_id: DS-CAN-HAT-40-A
 doc_rev: "1.0"
 doc_updated: 2026-11-12
-marking: can_hat_40_pcb v0.1.0  # silkscreen text identifying this release
+marking: can_hat_40_pcb v0.1.0  # Silkscreen text.
 pcb: can_hat_40_pcb v0.1.0
 
-# What changed relative to the previous release (shown in release history).
+# Changes since the previous release (shown in release history).
 changes:
   - Initial release.
 
@@ -20,9 +20,8 @@ features:
   - "Jumper selectable **silent mode** (listen-only) for bus monitoring"
   - "Operates at fixed **3.3 V logic**"
 
-# Flat list; `group` controls table grouping, `id` links rows across
-# releases for comparison. Use min/typ/max/unit for numbers, or `value`
-# for text.
+# `group` sets the table grouping; `id` matches rows across releases.
+# Use min/typ/max/unit for numbers, or `value` for text.
 specs:
   - { id: supply,      group: Power,          param: Supply,            value: From the host 40-pin header }
   - { id: logic,       group: Power,          param: Logic level,       value: 3.3 V (fixed) }

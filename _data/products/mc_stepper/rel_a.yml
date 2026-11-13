@@ -1,15 +1,15 @@
 name: Rel A
-slug: rel-a                     # URL segment: /products/mc_stepper/rel-a/
-version: v0.3.0                 # code version, matches the internal git release tag
-status: preproduction           # preview | preproduction | active | nrnd | obsolete
+slug: rel-a
+version: v0.3.0  # Matches the PCB git release tag.
+status: preproduction  # preview | preproduction | active | nrnd | obsolete
 released: 2026-09-21
 doc_id: DS-MC-STEPPER-A
 doc_rev: "1.0"
 doc_updated: 2026-11-12
-marking: mc_stepper_pcb v0.3.0  # silkscreen text identifying this release
+marking: mc_stepper_pcb v0.3.0  # Silkscreen text.
 pcb: mc_stepper_pcb v0.3.0
 
-# What changed relative to the previous release (shown in release history).
+# Changes since the previous release (shown in release history).
 changes:
   - Initial release.
 
@@ -23,9 +23,8 @@ features:
   - "**GPIO connector** with 3.3 V supply for custom hardware"
   - "Addressable **RGB LED** (WS2812B-2020) for status display"
 
-# Flat list; `group` controls table grouping, `id` links rows across
-# releases for comparison. Use min/typ/max/unit for numbers, or `value`
-# for text.
+# `group` sets the table grouping; `id` matches rows across releases.
+# Use min/typ/max/unit for numbers, or `value` for text.
 specs:
   - { id: vin,         group: Power,          param: Supply voltage,     cond: "VIN", min: 6, typ: 12, max: 29, unit: V }
   - { id: i_gpio,      group: Power,          param: GPIO 3.3 V output,  cond: "Approximate, thermally limited", max: 200, unit: mA }

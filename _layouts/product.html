@@ -85,6 +85,7 @@ Front matter: product (key under _data/products).
     </table>
   </div>
 
+  {%- if product.repos and product.repos.size > 0 %}
   <h2 id="firmware-software">Firmware and software</h2>
   <p>Maintained in their own repositories. Each datasheet notes firmware
     compatibility for that release.</p>
@@ -106,6 +107,7 @@ Front matter: product (key under _data/products).
     {%- endfor %}
     </tbody>
   </table>
+  {%- endif %}
 
   {%- assign guides = site.pages | where: "parent", page.title | sort:
   "nav_order" %}
