@@ -7,8 +7,7 @@ codename: blasher
 category: Tools
 
 # Photo for the product cards and product page.
-# TODO TODO TODO UNCOMMENT:
-#image: /products/blasher/rel-a/assets/blasher_rel-a-top.png
+image: /products/blasher/rel-a/assets/blasher_rel-a-top.png
 
 # Shown on the product page and at the top of every datasheet overview.
 description: >-

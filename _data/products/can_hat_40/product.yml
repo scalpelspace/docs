@@ -7,8 +7,7 @@ codename: can_hat_40
 category: CAN interfaces
 
 # Photo for the product cards and product page.
-# TODO TODO TODO UNCOMMENT:
-#image: /products/can_hat_40/rel-a/assets/can_hat_40_rel-a-top.png
+image: /products/can_hat_40/rel-a/assets/can_hat_40_rel-a-top.png
 
 # Shown on the product page and at the top of every datasheet overview.
 description: >-

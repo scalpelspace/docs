@@ -7,8 +7,7 @@ codename: momentum
 category: Sensors
 
 # Photo for the product cards and product page.
-# TODO TODO TODO UNCOMMENT:
-#image: /products/momentum/rel-b/assets/momentum_rel-b-top.png
+image: /products/momentum/rel-b/assets/momentum_rel-b-top.png
 
 # Shown on the product page and at the top of every datasheet overview.
 description: >-

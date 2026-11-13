@@ -137,7 +137,10 @@
   color: var(--ds-ok);
 }
 
-.ds-badge--preview,
+.ds-badge--preview {
+  color: var(--ds-accent);
+}
+
 .ds-badge--preproduction {
   color: var(--ds-info);
 }
