@@ -7,8 +7,7 @@ codename: can_hat_mini
 category: CAN interfaces
 
 # Photo for the product cards and product page.
-# TODO TODO TODO UNCOMMENT:
-#image: /products/can_hat_mini/rel-a/assets/can_hat_mini_rel-a-top.png
+image: /products/can_hat_mini/rel-a/assets/can_hat_mini_rel-a-top.png
 
 # Shown on the product page and at the top of every datasheet overview.
 description: >-
