@@ -584,6 +584,30 @@ tr.ds-current td {
     background: transparent !important;
   }
 
+  /* Lists on paper: native markers. The theme draws bullets and step numbers
+     as absolutely positioned elements, which can drift away from their text
+     (even onto nearby headings) when printed. */
+  .main-content ul:not(.ds-downloads) {
+    list-style: disc outside;
+  }
+
+  .main-content ol {
+    list-style: decimal outside;
+  }
+
+  .main-content ol ol {
+    list-style: lower-alpha outside;
+  }
+
+  .main-content ul > li::before, .main-content ol > li::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  .main-content li::marker {
+    color: var(--ds-muted);
+  }
+
   h2, h3 {
     break-after: avoid;
   }
