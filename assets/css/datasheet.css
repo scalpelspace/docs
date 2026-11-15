@@ -222,6 +222,12 @@ html {
 
 /* ---------- Tables ---------- */
 
+/* The theme forces every cell to at least 7.5rem, which makes tables scroll
+   sideways on phones. Let columns size to their content instead. */
+th, td {
+  min-width: 0;
+}
+
 .ds-table-wrap {
   overflow-x: auto;
 }
