@@ -557,8 +557,25 @@ tr.ds-current td {
     table-layout: fixed;
   }
 
-  .datasheet th, .datasheet td {
+  /* Tables on paper: no shadow or scroll box (both get clipped at the page
+     margins); plain collapsed grid lines on every edge instead. */
+  .table-wrapper {
+    overflow: visible !important;
+    border-radius: 0;
+    box-shadow: none !important;
+  }
+
+  .table-wrapper table {
+    width: 100%;
+    min-width: 0;
+    border-collapse: collapse;
+  }
+
+  .table-wrapper th, .table-wrapper td {
+    min-width: 0 !important;
     padding: 0.3rem 0.5rem !important;
+    border: 0.5pt solid #999 !important;
+    background: transparent !important;
   }
 
   h2, h3 {
