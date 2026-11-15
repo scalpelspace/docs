@@ -1,5 +1,12 @@
 /* Datasheet, product and catalog layouts. Sits on top of Just the Docs. */
 
+/* Stop iOS Safari enlarging text in wide blocks (e.g. merged table cells).
+   The theme only sets the unprefixed property, which iOS Safari ignores. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 :root {
   --ds-border: rgba(127, 127, 127, 0.3);
   --ds-subtle: rgba(127, 127, 127, 0.08);
