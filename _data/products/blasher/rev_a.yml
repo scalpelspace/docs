@@ -1,6 +1,5 @@
 name: Rev A
 slug: rev-a
-version: v0.2.0  # Matches the PCB git release tag.
 status: preview  # preview | preproduction | active | nrnd | obsolete
 released: 2026-09-21
 doc_id: DS-BLASHER-A

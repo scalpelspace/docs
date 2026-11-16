@@ -12,8 +12,6 @@ redirect_from: /products/blasher/rel-a/
      placed just before "Firmware and software". The shared product
      description comes from _data/products/blasher/product.yml. -->
 
-Rev A corresponds to `blasher_pcb` v0.2.0, a 4-layer board.
-
 <!-- Board top and bottom, side by side. -->
 <div class="ds-figure-row">
   <figure>

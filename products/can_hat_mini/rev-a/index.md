@@ -12,8 +12,6 @@ redirect_from: /products/can_hat_mini/rel-a/
      placed just before "Firmware and software". The shared product
      description comes from _data/products/can_hat_mini/product.yml. -->
 
-Rev A corresponds to `can_hat_mini_pcb` v0.1.1.
-
 <!-- Board top and bottom, side by side. -->
 <div class="ds-figure-row">
   <figure>

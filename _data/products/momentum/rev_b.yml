@@ -1,6 +1,5 @@
 name: Rev B
 slug: rev-b
-version: v0.2.0  # Matches the PCB git release tag.
 status: active  # preview | preproduction | active | nrnd | obsolete
 released: 2025-08-03
 doc_id: DS-MOMENTUM-B

@@ -1,6 +1,5 @@
 name: Rev A
 slug: rev-a
-version: v0.1.1  # Matches the PCB git release tag.
 status: nrnd  # preview | preproduction | active | nrnd | obsolete
 released: 2025-06-16
 doc_id: DS-MOMENTUM-A

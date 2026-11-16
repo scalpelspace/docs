@@ -78,16 +78,13 @@ The marker is an HTML comment containing only the word: details
       <dd>{{ rev.name }} {% include datasheet/status_badge.html
         status=rev.status %}
       </dd>
-      {%- if rev.version %}
-      <dt>Version</dt>
-      <dd><code>{{ rev.version }}</code></dd>
-      {%- endif %}
       <dt>Released</dt>
       <dd>{{ rev.released | date: "%Y-%m-%d" | default: "TBD" }}</dd>
       <dt>Marking</dt>
       <dd><code>{{ rev.marking }}</code></dd>
       <dt>Document</dt>
-      <dd>{{ rev.doc_id }} release {{ rev.doc_release }}, {{ rev.doc_updated | date:
+      <dd>{{ rev.doc_id }} release {{ rev.doc_release }}, {{ rev.doc_updated |
+        date:
         "%Y-%m-%d" | default: "WIP" }}
       </dd>
     </dl>
@@ -446,7 +443,6 @@ The marker is an HTML comment containing only the word: details
       <thead>
       <tr>
         <th>Revision</th>
-        <th>Version</th>
         <th>Released</th>
         <th>Status</th>
         <th>Changes</th>
@@ -460,7 +456,6 @@ The marker is an HTML comment containing only the word: details
         <td><a
           href="{{ product_url | append: item.slug | append: '/' | relative_url }}">{{
           item.name }}</a></td>
-        <td>{% if item.version %}<code>{{ item.version }}</code>{% endif %}</td>
         <td>{{ item.released | date: "%Y-%m-%d" | default: "TBD" }}</td>
         <td>{% include datasheet/status_badge.html status=item.status %}</td>
         <td>

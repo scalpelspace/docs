@@ -12,8 +12,6 @@ redirect_from: /products/mc_stepper/rel-a/
      placed just before "Firmware and software". The shared product
      description comes from _data/products/mc_stepper/product.yml. -->
 
-Rev A corresponds to `mc_stepper_pcb` v0.3.0, a 4-layer board.
-
 <!-- Board top and bottom, side by side. -->
 <div class="ds-figure-row">
   <figure>

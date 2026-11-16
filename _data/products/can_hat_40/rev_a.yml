@@ -1,6 +1,5 @@
 name: Rev A
 slug: rev-a
-version: v0.1.0  # Matches the PCB git release tag.
 status: active  # preview | preproduction | active | nrnd | obsolete
 released: 2025-08-03
 doc_id: DS-CAN-HAT-40-A

@@ -12,9 +12,8 @@ redirect_from: /products/momentum/rel-b/
      placed just before "Firmware and software". The shared product
      description comes from _data/products/momentum/product.yml. -->
 
-Rev B corresponds to `momentum_pcb` v0.2.0, the production intended 4-layer
-board. It moves to the BNO086 IMU (backwards compatible with the BNO085) and
-adds optional protection on the `5V` pin supply.
+Rev B moves to the BNO086 IMU (backwards compatible with the BNO085) and adds
+optional protection on the `5V` pin supply compared to Rev A.
 
 <!-- Board top and bottom, side by side. -->
 <div class="ds-figure-row">

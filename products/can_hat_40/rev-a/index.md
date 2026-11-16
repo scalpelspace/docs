@@ -12,8 +12,6 @@ redirect_from: /products/can_hat_40/rel-a/
      placed just before "Firmware and software". The shared product
      description comes from _data/products/can_hat_40/product.yml. -->
 
-Rev A corresponds to `can_hat_40_pcb` v0.1.0, a 4-layer board.
-
 <!-- Board top and bottom, side by side. -->
 <div class="ds-figure-row">
   <figure>

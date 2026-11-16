@@ -12,9 +12,6 @@ redirect_from: /products/momentum/rel-a/
      placed just before "Firmware and software". The shared product
      description comes from _data/products/momentum/product.yml. -->
 
-Rev A corresponds to `momentum_pcb` v0.1.1, a 4-layer board built around the
-BNO085 IMU.
-
 <!-- Board top and bottom, side by side. -->
 <div class="ds-figure-row">
   <figure>

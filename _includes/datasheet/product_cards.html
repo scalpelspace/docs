@@ -21,7 +21,7 @@ Usage: {% include datasheet/product_cards.html %}
     <span class="ds-kicker">{{ product.category }}</span>
     <span class="ds-catalog-card__name">{{ product.name }}</span>
     <span class="ds-catalog-card__tagline">{{ product.tagline }}</span>
-    <span class="ds-catalog-card__meta">Latest: {{ latest.name }}{% if latest.version %} ({{ latest.version }}){% endif %} {% include datasheet/status_badge.html status=latest.status %} · {{ product.revisions.size }} revision{% if product.revisions.size != 1 %}s{% endif %}</span>
+    <span class="ds-catalog-card__meta">Latest: {{ latest.name }} {% include datasheet/status_badge.html status=latest.status %} · {{ product.revisions.size }} revision{% if product.revisions.size != 1 %}s{% endif %}</span>
   </a>
   {%- endfor %}
 </div>
