@@ -71,7 +71,7 @@ html {
   margin: 0.25rem 0 0.25rem;
 }
 
-.ds-rel {
+.ds-rev {
   font-weight: 400;
   color: var(--ds-accent);
   white-space: nowrap;
@@ -280,7 +280,7 @@ tr.ds-current td {
   background: var(--ds-subtle);
 }
 
-/* Compact list inside a table cell (release history changes). Uses native list
+/* Compact list inside a table cell (revision history changes). Uses native list
    markers: the theme draws bullets as absolutely positioned. Elements can drift
    away from their text inside vertically centred table cells when printed. */
 .datasheet ul.ds-compact {
@@ -394,14 +394,14 @@ tr.ds-current td {
 
 /* ---------- Product page / catalog cards ---------- */
 
-.ds-release-cards, .ds-catalog {
+.ds-revision-cards, .ds-catalog {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   gap: 1rem;
   margin: 1rem 0 1.5rem;
 }
 
-.ds-release-card, .ds-catalog-card {
+.ds-revision-card, .ds-catalog-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -413,26 +413,26 @@ tr.ds-current td {
   text-decoration: none !important;
 }
 
-.ds-release-card:hover, .ds-catalog-card:hover {
+.ds-revision-card:hover, .ds-catalog-card:hover {
   border-color: var(--ds-accent);
 }
 
-.ds-release-card.is-latest {
+.ds-revision-card.is-latest {
   border-color: var(--ds-accent);
   border-width: 2px;
 }
 
-.ds-release-card__name, .ds-catalog-card__name {
+.ds-revision-card__name, .ds-catalog-card__name {
   font-size: 1.15rem;
   font-weight: 600;
 }
 
-.ds-release-card__meta, .ds-catalog-card__meta {
+.ds-revision-card__meta, .ds-catalog-card__meta {
   font-size: 0.8rem;
   color: var(--ds-muted);
 }
 
-.ds-release-card__change, .ds-catalog-card__tagline {
+.ds-revision-card__change, .ds-catalog-card__tagline {
   font-size: 0.85rem;
 }
 

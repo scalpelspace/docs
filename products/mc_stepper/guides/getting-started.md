@@ -3,12 +3,12 @@ title: Getting Started
 parent: MC Stepper
 grand_parent: Products
 nav_order: 1
-applies_to: [ rel_a ]
+applies_to: [ rev_a ]
 ---
 
 # MC Stepper: Getting Started
 
-<p class="ds-applies">Applies to: Rel A</p>
+<p class="ds-applies">Applies to: Rev A</p>
 
 ## CAN interface with Arduino library
 
@@ -20,7 +20,7 @@ The recommended starting point for most users.
     - The RGB LED lights up on initialization.
 3. Ensure the bus is terminated at both physical ends. On-board termination is
    not populated by default, see the [datasheet]({% link
-   products/mc_stepper/rel-a/index.md%}#detailed-description).
+   products/mc_stepper/rev-a/index.md%}#detailed-description).
 4. Flash the `mc_stepper_basic` example from the
    [ScalpelSpace Bus](https://github.com/scalpelspace/scalpelspace_bus) Arduino
    library to a host with a CAN interface (e.g. the

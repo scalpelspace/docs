@@ -12,8 +12,8 @@ ScalpelSpace hardware.</p>
 
 ## Products
 
-One datasheet per hardware release, with specifications, pinouts, design
-files and release history.
+One datasheet per hardware revision, with specifications, pinouts, design
+files and revision history.
 
 {% include datasheet/product_cards.html %}
 

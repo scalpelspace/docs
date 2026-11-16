@@ -3,12 +3,12 @@ title: Getting Started
 parent: Blasher
 grand_parent: Products
 nav_order: 1
-applies_to: [ rel_a ]
+applies_to: [ rev_a ]
 ---
 
 # Blasher: Getting Started
 
-<p class="ds-applies">Applies to: Rel A</p>
+<p class="ds-applies">Applies to: Rev A</p>
 
 ## Flash firmware with the web app
 

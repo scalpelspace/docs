@@ -3,12 +3,12 @@ title: Getting Started
 parent: SPI-CAN Breakout
 grand_parent: Products
 nav_order: 1
-applies_to: [ rel_a ]
+applies_to: [ rev_a ]
 ---
 
 # SPI-CAN Breakout: Getting Started
 
-<p class="ds-applies">Applies to: Rel A</p>
+<p class="ds-applies">Applies to: Rev A</p>
 
 1. Wire the 8-pin header to your host:
     1. `5 V` power.

@@ -1,9 +1,10 @@
 ---
-title: Momentum Rel A
+title: Momentum Rev A
 layout: datasheet
 product: momentum
-release: rel_a
+revision: rev_a
 nav_exclude: true
+redirect_from: /products/momentum/rel-a/
 ---
 
 <!-- Text above the details marker is the short "Overview" near the top of
@@ -11,17 +12,17 @@ nav_exclude: true
      placed just before "Firmware and software". The shared product
      description comes from _data/products/momentum/product.yml. -->
 
-Rel A corresponds to `momentum_pcb` v0.1.1, a 4-layer board built around the
+Rev A corresponds to `momentum_pcb` v0.1.1, a 4-layer board built around the
 BNO085 IMU.
 
 <!-- Board top and bottom, side by side. -->
 <div class="ds-figure-row">
   <figure>
-    <img src="assets/momentum_rel-a-top.png" alt="Board top">
+    <img src="assets/momentum_rev-a-top.png" alt="Board top">
     <figcaption>Top</figcaption>
   </figure>
   <figure>
-    <img src="assets/momentum_rel-a-bottom.png" alt="Board bottom">
+    <img src="assets/momentum_rev-a-bottom.png" alt="Board bottom">
     <figcaption>Bottom</figcaption>
   </figure>
 </div>

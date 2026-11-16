@@ -3,9 +3,9 @@ layout: default
 toc: false
 ---
 {%- comment -%}
-One datasheet per product hardware release.
-Front matter: product (key under _data/products), release (data file key).
-Everything is rendered from the release's data file except two prose areas
+One datasheet per product hardware revision.
+Front matter: product (key under _data/products), revision (data file key).
+Everything is rendered from the revision's data file except two prose areas
 taken from the page body:
 - text above the details marker  = short "Overview" (near the top)
 - text below the details marker  = "Detailed description" (just before
@@ -14,8 +14,8 @@ The marker is an HTML comment containing only the word: details
 {%- endcomment -%}
 {%- assign pdata = site.data.products[page.product] -%}
 {%- assign product = pdata.product -%}
-{%- assign rel = pdata[page.release] -%}
-{%- assign latest_key = product.releases | last -%}
+{%- assign rev = pdata[page.revision] -%}
+{%- assign latest_key = product.revisions | last -%}
 {%- assign latest = pdata[latest_key] -%}
 {%- assign body = content | replace: "<!-- details -->", "<!--details-->" -%}
 {%- assign body_parts = body | split: "<!--details-->" -%}
@@ -25,13 +25,13 @@ The marker is an HTML comment containing only the word: details
   /* Running header/footer for print (Chrome 131+, Paged.js). */
   @page {
     @top-left {
-      content: "{{ product.name }} {{ rel.name }} datasheet";
+      content: "{{ product.name }} {{ rev.name }} datasheet";
     }
     @top-right {
-      content: "{{ rel.doc_id }} rev {{ rel.doc_rev }}";
+      content: "{{ rev.doc_id }} release {{ rev.doc_release }}";
     }
     @bottom-left {
-      content: "{{ site.url | default: 'docs.scalpelspace.com' | remove: 'https://' }}{{ product_url }}{{ rel.slug }}/";
+      content: "{{ site.url | default: 'docs.scalpelspace.com' | remove: 'https://' }}{{ product_url }}{{ rev.slug }}/";
     }
     @bottom-right {
       content: "Page " counter(page) " of " counter(pages);
@@ -44,23 +44,23 @@ The marker is an HTML comment containing only the word: details
   <nav class="ds-crumbs ds-screen-only" aria-label="Breadcrumb">
     <a href="{{ '/products/' | relative_url }}">Products</a> /
     <a href="{{ product_url | relative_url }}">{{ product.name }}</a> /
-    <span>{{ rel.name }}</span>
+    <span>{{ rev.name }}</span>
   </nav>
 
-  {%- if page.release != latest_key %}
+  {%- if page.revision != latest_key %}
   <div class="ds-banner ds-screen-only">
-    You are viewing <strong>{{ rel.name }}</strong>{% if rel.status == "nrnd"
-    %}, which is not recommended for new designs{% elsif rel.status ==
+    You are viewing <strong>{{ rev.name }}</strong>{% if rev.status == "nrnd"
+    %}, which is not recommended for new designs{% elsif rev.status ==
     "obsolete" %}, which is obsolete{% endif %}.
-    The latest release is <a
+    The latest revision is <a
     href="{{ product_url | append: latest.slug | append: '/' | relative_url }}">{{
     latest.name }}</a>.
   </div>
   {%- endif %}
 
-  {%- if rel.status == "preproduction" %}
+  {%- if rev.status == "preproduction" %}
   <div class="ds-banner ds-banner--preproduction">
-    <strong>Pre-production release.</strong> This is an early release ahead of
+    <strong>Pre-production revision.</strong> This is an early revision ahead of
     production. Specifications and design details may change.
   </div>
   {%- endif %}
@@ -68,26 +68,26 @@ The marker is an HTML comment containing only the word: details
   <header class="ds-head">
     <div class="ds-title">
       <p class="ds-kicker">{{ product.category }} · Datasheet</p>
-      <h1>{{ product.name }} <span class="ds-rel">{{ rel.name }}</span></h1>
+      <h1>{{ product.name }} <span class="ds-rev">{{ rev.name }}</span></h1>
       <p class="ds-tagline">{{ product.tagline }}</p>
     </div>
     <dl class="ds-meta">
       <dt>Codename</dt>
       <dd><code>{{ product.codename }}</code></dd>
-      <dt>Release</dt>
-      <dd>{{ rel.name }} {% include datasheet/status_badge.html
-        status=rel.status %}
+      <dt>Revision</dt>
+      <dd>{{ rev.name }} {% include datasheet/status_badge.html
+        status=rev.status %}
       </dd>
-      {%- if rel.version %}
+      {%- if rev.version %}
       <dt>Version</dt>
-      <dd><code>{{ rel.version }}</code></dd>
+      <dd><code>{{ rev.version }}</code></dd>
       {%- endif %}
       <dt>Released</dt>
-      <dd>{{ rel.released | date: "%Y-%m-%d" | default: "TBD" }}</dd>
+      <dd>{{ rev.released | date: "%Y-%m-%d" | default: "TBD" }}</dd>
       <dt>Marking</dt>
-      <dd><code>{{ rel.marking }}</code></dd>
+      <dd><code>{{ rev.marking }}</code></dd>
       <dt>Document</dt>
-      <dd>{{ rel.doc_id }} rev {{ rel.doc_rev }}, {{ rel.doc_updated | date:
+      <dd>{{ rev.doc_id }} release {{ rev.doc_release }}, {{ rev.doc_updated | date:
         "%Y-%m-%d" | default: "WIP" }}
       </dd>
     </dl>
@@ -95,15 +95,15 @@ The marker is an HTML comment containing only the word: details
 
   <div class="ds-toolbar ds-screen-only">
     <label>
-      Release
+      Revision
       <select onchange="window.location.href = this.value"
-              aria-label="Select release">
-        {%- assign rel_keys = product.releases | reverse -%}
-        {%- for key in rel_keys %}
+              aria-label="Select revision">
+        {%- assign rev_keys = product.revisions | reverse -%}
+        {%- for key in rev_keys %}
         {%- assign item = pdata[key] %}
         <option
           value="{{ product_url | append: item.slug | append: '/' | relative_url }}"
-          {% if key== page.release %}selected{% endif %}>
+          {% if key== page.revision %}selected{% endif %}>
           {{ item.name }}{% if key == latest_key %} (latest){% endif %}
         </option>
         {%- endfor %}
@@ -117,7 +117,7 @@ The marker is an HTML comment containing only the word: details
   <section>
     <h2 id="features">Features</h2>
     <ul>
-      {%- for f in rel.features %}
+      {%- for f in rev.features %}
       <li>{{ f | markdownify | remove: '<p>' | remove: '</p>' | strip }}
       </li>
       {%- endfor %}
@@ -145,7 +145,7 @@ The marker is an HTML comment containing only the word: details
         </tr>
         </thead>
         <tbody>
-        {%- assign groups = rel.specs | group_by: "group" -%}
+        {%- assign groups = rev.specs | group_by: "group" -%}
         {%- for g in groups %}
         <tr class="ds-group">
           <th colspan="6">{{ g.name }}</th>
@@ -170,7 +170,7 @@ The marker is an HTML comment containing only the word: details
     </div>
   </section>
 
-  {%- if rel.connectors %}
+  {%- if rev.connectors %}
   <section>
     <h2 id="connectors">Connectors and pinout</h2>
     <div class="ds-figure-placeholder ds-figure-placeholder--wide">Figure:
@@ -185,7 +185,7 @@ The marker is an HTML comment containing only the word: details
       </tr>
       </thead>
       <tbody>
-      {%- for c in rel.connectors %}
+      {%- for c in rev.connectors %}
       <tr>
         <td><code>{{ c.ref }}</code></td>
         <td>{{ c.name }}</td>
@@ -194,7 +194,7 @@ The marker is an HTML comment containing only the word: details
       {%- endfor %}
       </tbody>
     </table>
-    {%- for c in rel.connectors %}
+    {%- for c in rev.connectors %}
     {%- if c.pins %}
     <h3 id="conn-{{ c.ref | downcase }}">{{ c.ref }}: {{ c.name }}</h3>
     <div class="ds-table-wrap">
@@ -226,7 +226,7 @@ The marker is an HTML comment containing only the word: details
   </section>
   {%- endif %}
 
-  {%- if rel.switches %}
+  {%- if rev.switches %}
   <section>
     <h2 id="switches">Switches and jumpers</h2>
     <table>
@@ -238,7 +238,7 @@ The marker is an HTML comment containing only the word: details
       </tr>
       </thead>
       <tbody>
-      {%- for s in rel.switches %}
+      {%- for s in rev.switches %}
       <tr>
         <td><code>{{ s.ref }}</code></td>
         <td>{{ s.name }}</td>
@@ -250,10 +250,10 @@ The marker is an HTML comment containing only the word: details
   </section>
   {%- endif %}
 
-  {%- if rel.leds or rel.test_points or rel.batteries %}
+  {%- if rev.leds or rev.test_points or rev.batteries %}
   <section>
     <h2 id="indicators">Indicators, test pads and battery</h2>
-    {%- if rel.leds %}
+    {%- if rev.leds %}
     <h3 id="leds">LEDs</h3>
     <table>
       <thead>
@@ -264,7 +264,7 @@ The marker is an HTML comment containing only the word: details
       </tr>
       </thead>
       <tbody>
-      {%- for l in rel.leds %}
+      {%- for l in rev.leds %}
       <tr>
         <td>{{ l.name }}</td>
         <td>{{ l.mark }}</td>
@@ -274,7 +274,7 @@ The marker is an HTML comment containing only the word: details
       </tbody>
     </table>
     {%- endif %}
-    {%- if rel.test_points %}
+    {%- if rev.test_points %}
     <h3 id="test-pads">Test pads</h3>
     <table>
       <thead>
@@ -285,7 +285,7 @@ The marker is an HTML comment containing only the word: details
       </tr>
       </thead>
       <tbody>
-      {%- for t in rel.test_points %}
+      {%- for t in rev.test_points %}
       <tr>
         <td><code>{{ t.ref }}</code></td>
         <td>{{ t.name }}</td>
@@ -295,7 +295,7 @@ The marker is an HTML comment containing only the word: details
       </tbody>
     </table>
     {%- endif %}
-    {%- if rel.batteries %}
+    {%- if rev.batteries %}
     <h3 id="batteries">Batteries</h3>
     <table>
       <thead>
@@ -306,7 +306,7 @@ The marker is an HTML comment containing only the word: details
       </tr>
       </thead>
       <tbody>
-      {%- for b in rel.batteries %}
+      {%- for b in rev.batteries %}
       <tr>
         <td><code>{{ b.ref }}</code></td>
         <td>{{ b.name }}</td>
@@ -329,14 +329,14 @@ The marker is an HTML comment containing only the word: details
   {%- assign has_repos = false %}
   {%- if product.repos and product.repos.size > 0 %}{% assign has_repos = true
   %}{% endif %}
-  {%- if has_repos or rel.firmware or rel.protocols %}
+  {%- if has_repos or rev.firmware or rev.protocols %}
   <section>
     <h2 id="firmware-software">Firmware and software</h2>
-    {%- if rel.firmware %}
+    {%- if rev.firmware %}
     <p class="ds-callout">
-      {%- if rel.firmware.min %}<strong>Minimum firmware: <code>{{
-      rel.firmware.min }}</code>.</strong>{% endif %}
-      {{ rel.firmware.note }}
+      {%- if rev.firmware.min %}<strong>Minimum firmware: <code>{{
+      rev.firmware.min }}</code>.</strong>{% endif %}
+      {{ rev.firmware.note }}
     </p>
     {%- endif %}
     {%- if has_repos %}
@@ -361,9 +361,9 @@ The marker is an HTML comment containing only the word: details
       </tbody>
     </table>
     {%- endif %}
-    {%- if rel.protocols %}
+    {%- if rev.protocols %}
     <p>Protocols:
-      {%- for p in rel.protocols %}
+      {%- for p in rev.protocols %}
       <a href="{{ p.url | relative_url }}">{{ p.name }}</a>{% if p.version
       %} <code>{{ p.version }}</code>{% endif %}{% unless forloop.last %},{%
       endunless %}
@@ -373,7 +373,7 @@ The marker is an HTML comment containing only the word: details
   </section>
   {%- endif %}
 
-  {%- if rel.bom %}
+  {%- if rev.bom %}
   <section>
     <h2 id="bom">Key components</h2>
     <table>
@@ -386,7 +386,7 @@ The marker is an HTML comment containing only the word: details
       </tr>
       </thead>
       <tbody>
-      {%- for b in rel.bom %}
+      {%- for b in rev.bom %}
       <tr>
         <td><code>{{ b.mpn }}</code></td>
         <td>{{ b.mfr }}</td>
@@ -406,14 +406,14 @@ The marker is an HTML comment containing only the word: details
     </div>
   </section>
 
-  {%- if rel.downloads %}
+  {%- if rev.downloads %}
   <section>
     <h2 id="downloads">Design files</h2>
     <ul class="ds-downloads">
-      {%- for d in rel.downloads %}
+      {%- for d in rev.downloads %}
       <li>
         <a
-          href="{{ product_url | append: rel.slug | append: '/assets/' | append: d.file | relative_url }}">{{
+          href="{{ product_url | append: rev.slug | append: '/assets/' | append: d.file | relative_url }}">{{
           d.label }}</a>
         <span class="ds-filetype">{{ d.type }}</span>
         <span class="ds-print-only ds-filename">{{ d.file }}</span>
@@ -425,8 +425,8 @@ The marker is an HTML comment containing only the word: details
 
   <section>
     <h2 id="errata">Errata</h2>
-    {%- if rel.errata.size > 0 %}
-    {%- for e in rel.errata %}
+    {%- if rev.errata.size > 0 %}
+    {%- for e in rev.errata %}
     <div class="ds-erratum">
       <h3 id="erratum-{{ e.id | downcase }}">{{ e.id }}: {{ e.title }}</h3>
       <p>{{ e.desc }}</p>
@@ -436,16 +436,16 @@ The marker is an HTML comment containing only the word: details
     </div>
     {%- endfor %}
     {%- else %}
-    <p>No known errata for {{ rel.name }}.</p>
+    <p>No known errata for {{ rev.name }}.</p>
     {%- endif %}
   </section>
 
   <section>
-    <h2 id="release-history">Release history</h2>
+    <h2 id="revision-history">Revision history</h2>
     <table>
       <thead>
       <tr>
-        <th>Release</th>
+        <th>Revision</th>
         <th>Version</th>
         <th>Released</th>
         <th>Status</th>
@@ -453,10 +453,10 @@ The marker is an HTML comment containing only the word: details
       </tr>
       </thead>
       <tbody>
-      {%- for key in rel_keys %}
+      {%- for key in rev_keys %}
       {%- assign item = pdata[key] %}
       <tr
-        {% if key== page.release %} class="ds-current" {% endif %}>
+        {% if key== page.revision %} class="ds-current" {% endif %}>
         <td><a
           href="{{ product_url | append: item.slug | append: '/' | relative_url }}">{{
           item.name }}</a></td>
@@ -478,6 +478,6 @@ The marker is an HTML comment containing only the word: details
   <footer class="ds-print-only ds-print-footer">
     Information subject to change without notice.
     Latest version of this document: {{ site.url | default:
-    'https://docs.scalpelspace.com' }}{{ product_url }}{{ rel.slug }}/
+    'https://docs.scalpelspace.com' }}{{ product_url }}{{ rev.slug }}/
   </footer>
 </article>

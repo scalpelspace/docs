@@ -1,9 +1,10 @@
 ---
-title: Blasher Rel A
+title: Blasher Rev A
 layout: datasheet
 product: blasher
-release: rel_a
+revision: rev_a
 nav_exclude: true
+redirect_from: /products/blasher/rel-a/
 ---
 
 <!-- Text above the details marker is the short "Overview" near the top of
@@ -11,16 +12,16 @@ nav_exclude: true
      placed just before "Firmware and software". The shared product
      description comes from _data/products/blasher/product.yml. -->
 
-Rel A corresponds to `blasher_pcb` v0.2.0, a 4-layer board.
+Rev A corresponds to `blasher_pcb` v0.2.0, a 4-layer board.
 
 <!-- Board top and bottom, side by side. -->
 <div class="ds-figure-row">
   <figure>
-    <img src="assets/blasher_rel-a-top.png" alt="Board top">
+    <img src="assets/blasher_rev-a-top.png" alt="Board top">
     <figcaption>Top</figcaption>
   </figure>
   <figure>
-    <img src="assets/blasher_rel-a-bottom.png" alt="Board bottom">
+    <img src="assets/blasher_rev-a-bottom.png" alt="Board bottom">
     <figcaption>Bottom</figcaption>
   </figure>
 </div>

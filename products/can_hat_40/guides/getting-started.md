@@ -3,12 +3,12 @@ title: Getting Started
 parent: SPI-CAN 40-pin Hat
 grand_parent: Products
 nav_order: 1
-applies_to: [ rel_a ]
+applies_to: [ rev_a ]
 ---
 
 # SPI-CAN 40-pin Hat: Getting Started
 
-<p class="ds-applies">Applies to: Rel A</p>
+<p class="ds-applies">Applies to: Rev A</p>
 
 1. Power down the host and seat the hat on the 40-pin GPIO header, aligning pin
    1 to pin 1.

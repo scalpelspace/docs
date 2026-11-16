@@ -9,4 +9,4 @@ has_toc: false
 # Products
 
 ScalpelSpace hardware products. Each product has one datasheet per hardware
-release; firmware and software are documented in their own repositories.
+revision; firmware and software are documented in their own repositories.

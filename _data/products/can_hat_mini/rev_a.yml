@@ -1,15 +1,15 @@
-name: Rel A
-slug: rel-a
+name: Rev A
+slug: rev-a
 version: v0.1.1  # Matches the PCB git release tag.
 status: active  # preview | preproduction | active | nrnd | obsolete
 released: 2026-05-03
 doc_id: DS-CAN-HAT-MINI-A
-doc_rev: "1.0"
+doc_release: "1.0"
 #doc_updated: 2026-11-12  # TODO: Shows "WIP" while unset.
 marking: can_hat_mini_pcb v0.1.1  # Silkscreen text.
 pcb: can_hat_mini_pcb v0.1.1
 
-# Changes since the previous release (shown in release history).
+# Changes since the previous revision (shown in revision history).
 changes:
   - Initial release.
 
@@ -21,7 +21,7 @@ features:
   - "Jumper selectable **silent mode** (listen-only) for bus monitoring"
   - "1x **M2.5 mounting hole**"
 
-# `group` sets the table grouping; `id` matches rows across releases.
+# `group` sets the table grouping; `id` matches rows across revisions.
 # Use min/typ/max/unit for numbers, or `value` for text.
 specs:
   - { id: vin,         group: Power,          param: Supply voltage,    cond: 5V pin, typ: 5.0, unit: V }
@@ -59,9 +59,9 @@ switches:
   - { ref: JP2, name: CAN silent,      desc: "Open = normal operation, closed = silent mode" }
 
 downloads:
-  - { label: Schematic, type: PDF,  file: can_hat_mini_rel-a_schematic.pdf }
-  - { label: Gerbers,   type: ZIP,  file: can_hat_mini_rel-a_gerber.zip }
-  - { label: 3D model,  type: STEP, file: can_hat_mini_rel-a.step }
+  - { label: Schematic, type: PDF,  file: can_hat_mini_rev-a_schematic.pdf }
+  - { label: Gerbers,   type: ZIP,  file: can_hat_mini_rev-a_gerber.zip }
+  - { label: 3D model,  type: STEP, file: can_hat_mini_rev-a.step }
 
 bom:
   - { mpn: MCP2518FDT-E/QBB,       mfr: Microchip Technology, desc: CAN FD to SPI controller,       qty: 1 }

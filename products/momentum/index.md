@@ -7,5 +7,5 @@ has_children: true
 has_toc: false
 ---
 
-<!-- Product-wide prose (applies to every release). Release-specific content
-     belongs in the release's data file or datasheet page. -->
+<!-- Product-wide prose (applies to every revision). Revision-specific content
+     belongs in the revision's data file or datasheet page. -->

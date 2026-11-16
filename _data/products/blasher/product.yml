@@ -1,5 +1,5 @@
-# Product data shared by every release. Each release has its own file next
-# to this one (rel_a.yml, ...); the file name is the release key.
+# Product data shared by every revision. Each revision has its own file next
+# to this one (rev_a.yml, ...); the file name is the revision key.
 
 name: Blasher
 tagline: USB-C firmware flash and utility tool
@@ -7,7 +7,7 @@ codename: blasher
 category: Tools
 
 # Photo for the product cards and product page.
-image: /products/blasher/rel-a/assets/blasher_rel-a-top.png
+image: /products/blasher/rev-a/assets/blasher_rev-a-top.png
 
 # Shown on the product page and at the top of every datasheet overview.
 description: >-
@@ -17,10 +17,10 @@ description: >-
   bootloader. Built for use with the Blasher web app at
   [blasher.scalpelspace.com](https://blasher.scalpelspace.com).
 
-# Oldest first. The last entry is the latest release.
-releases: [ rel_a ]
+# Oldest first. The last entry is the latest revision.
+revisions: [ rev_a ]
 
-# Spec ids shown in the product page's release comparison table.
+# Spec ids shown in the product page's revision comparison table.
 compare: [ bridge, logic, target_if ]
 
 # Links to firmware and software, which live in their own repositories.

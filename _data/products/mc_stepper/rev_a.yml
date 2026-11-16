@@ -1,15 +1,15 @@
-name: Rel A
-slug: rel-a
+name: Rev A
+slug: rev-a
 version: v0.3.0  # Matches the PCB git release tag.
 status: preproduction  # preview | preproduction | active | nrnd | obsolete
 released: 2026-09-21
 doc_id: DS-MC-STEPPER-A
-doc_rev: "1.0"
+doc_release: "1.0"
 #doc_updated: 2026-11-12  # TODO: Shows "WIP" while unset.
 marking: mc_stepper_pcb v0.3.0  # Silkscreen text.
 pcb: mc_stepper_pcb v0.3.0
 
-# Changes since the previous release (shown in release history).
+# Changes since the previous revision (shown in revision history).
 changes:
   - Initial release.
 
@@ -23,7 +23,7 @@ features:
   - "**GPIO connector** with 3.3 V supply for custom hardware"
   - "Addressable **RGB LED** (WS2812B-2020) for status display"
 
-# `group` sets the table grouping; `id` matches rows across releases.
+# `group` sets the table grouping; `id` matches rows across revisions.
 # Use min/typ/max/unit for numbers, or `value` for text.
 specs:
   - { id: vin,         group: Power,          param: Supply voltage,     cond: "VIN", min: 6, typ: 12, max: 29, unit: V }
@@ -85,9 +85,9 @@ protocols:
   - { name: ScalpelSpace CAN Protocol, url: /protocols/can_driver/ }
 
 downloads:
-  - { label: Schematic, type: PDF,  file: mc_stepper_rel-a_schematic.pdf }
-  - { label: Gerbers,   type: ZIP,  file: mc_stepper_rel-a_gerber.zip }
-  - { label: 3D model,  type: STEP, file: mc_stepper_rel-a.step }
+  - { label: Schematic, type: PDF,  file: mc_stepper_rev-a_schematic.pdf }
+  - { label: Gerbers,   type: ZIP,  file: mc_stepper_rev-a_gerber.zip }
+  - { label: 3D model,  type: STEP, file: mc_stepper_rev-a.step }
 
 bom:
   - { mpn: STM32L432KC,   mfr: STMicroelectronics,                   desc: 32-bit MCU,                qty: 1 }

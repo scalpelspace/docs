@@ -6,3 +6,7 @@ color_scheme: light  # Dark applied via prefers-color-scheme, see _includes/head
 heading_anchors: true
 
 url: https://docs.scalpelspace.com
+
+# Redirects from old URLs (redirect_from in page front matter).
+plugins:
+  - jekyll-redirect-from

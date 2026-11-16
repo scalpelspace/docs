@@ -1,15 +1,15 @@
-name: Rel A
-slug: rel-a
+name: Rev A
+slug: rev-a
 version: v0.2.0  # Matches the PCB git release tag.
 status: preview  # preview | preproduction | active | nrnd | obsolete
 released: 2026-09-21
 doc_id: DS-BLASHER-A
-doc_rev: "1.0"
+doc_release: "1.0"
 #doc_updated: 2026-11-12  # TODO: Shows "WIP" while unset.
 marking: blasher_pcb v0.2.0  # Silkscreen text.
 pcb: blasher_pcb v0.2.0
 
-# Changes since the previous release (shown in release history).
+# Changes since the previous revision (shown in revision history).
 changes:
   - Initial release.
 
@@ -23,7 +23,7 @@ features:
   - "**RX, TX and power** status LEDs"
   - "USB **ESD protection** (USBLC6-2P6)"
 
-# `group` sets the table grouping; `id` matches rows across releases.
+# `group` sets the table grouping; `id` matches rows across revisions.
 # Use min/typ/max/unit for numbers, or `value` for text.
 specs:
   - { id: supply,    group: Power,            param: Supply,           value: "5 V from USB-C" }
@@ -62,9 +62,9 @@ firmware:
     bootloader and provides a serial monitor.
 
 downloads:
-  - { label: Schematic, type: PDF,  file: blasher_rel-a_schematic.pdf }
-  - { label: Gerbers,   type: ZIP,  file: blasher_rel-a_gerber.zip }
-  - { label: 3D model,  type: STEP, file: blasher_rel-a.step }
+  - { label: Schematic, type: PDF,  file: blasher_rev-a_schematic.pdf }
+  - { label: Gerbers,   type: ZIP,  file: blasher_rev-a_gerber.zip }
+  - { label: 3D model,  type: STEP, file: blasher_rev-a.step }
 
 bom:
   - { mpn: CP2102N-A02-GQFN24, mfr: Silicon Labs,       desc: USB 2.0 to UART interface, qty: 1 }

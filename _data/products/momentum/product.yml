@@ -1,5 +1,5 @@
-# Product data shared by every release. Each release has its own file next
-# to this one (rel_a.yml, ...); the file name is the release key.
+# Product data shared by every revision. Each revision has its own file next
+# to this one (rev_a.yml, ...); the file name is the revision key.
 
 name: Momentum
 tagline: GNSS, 9-DOF IMU and barometer sensor shield
@@ -7,7 +7,7 @@ codename: momentum
 category: Sensors
 
 # Photo for the product cards and product page.
-image: /products/momentum/rel-b/assets/momentum_rel-b-top.png
+image: /products/momentum/rev-b/assets/momentum_rev-b-top.png
 
 # Shown on the product page and at the top of every datasheet overview.
 description: >-
@@ -17,10 +17,10 @@ description: >-
   integration of a full sensor suite into any project with an SPI or CAN bus
   host controller.
 
-# Oldest first. The last entry is the latest release.
-releases: [ rel_a, rel_b ]
+# Oldest first. The last entry is the latest revision.
+revisions: [ rev_a, rev_b ]
 
-# Spec ids shown in the product page's release comparison table.
+# Spec ids shown in the product page's revision comparison table.
 compare: [ imu, supply_prot ]
 
 # Links to firmware and software, which live in their own repositories.

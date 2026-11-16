@@ -1,9 +1,10 @@
 ---
-title: Momentum Rel B
+title: Momentum Rev B
 layout: datasheet
 product: momentum
-release: rel_b
+revision: rev_b
 nav_exclude: true
+redirect_from: /products/momentum/rel-b/
 ---
 
 <!-- Text above the details marker is the short "Overview" near the top of
@@ -11,18 +12,18 @@ nav_exclude: true
      placed just before "Firmware and software". The shared product
      description comes from _data/products/momentum/product.yml. -->
 
-Rel B corresponds to `momentum_pcb` v0.2.0, the production intended 4-layer
+Rev B corresponds to `momentum_pcb` v0.2.0, the production intended 4-layer
 board. It moves to the BNO086 IMU (backwards compatible with the BNO085) and
 adds optional protection on the `5V` pin supply.
 
 <!-- Board top and bottom, side by side. -->
 <div class="ds-figure-row">
   <figure>
-    <img src="assets/momentum_rel-b-top.png" alt="Board top">
+    <img src="assets/momentum_rev-b-top.png" alt="Board top">
     <figcaption>Top</figcaption>
   </figure>
   <figure>
-    <img src="assets/momentum_rel-b-bottom.png" alt="Board bottom">
+    <img src="assets/momentum_rev-b-bottom.png" alt="Board bottom">
     <figcaption>Bottom</figcaption>
   </figure>
 </div>

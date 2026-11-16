@@ -1,26 +1,27 @@
 ---
-title: SPI-CAN Breakout Rel A
+title: SPI-CAN 40-pin Hat Rev A
 layout: datasheet
-product: can_hat_mini
-release: rel_a
+product: can_hat_40
+revision: rev_a
 nav_exclude: true
+redirect_from: /products/can_hat_40/rel-a/
 ---
 
 <!-- Text above the details marker is the short "Overview" near the top of
      the datasheet. Text below it becomes the "Detailed description" section,
      placed just before "Firmware and software". The shared product
-     description comes from _data/products/can_hat_mini/product.yml. -->
+     description comes from _data/products/can_hat_40/product.yml. -->
 
-Rel A corresponds to `can_hat_mini_pcb` v0.1.1.
+Rev A corresponds to `can_hat_40_pcb` v0.1.0, a 4-layer board.
 
 <!-- Board top and bottom, side by side. -->
 <div class="ds-figure-row">
   <figure>
-    <img src="assets/can_hat_mini_rel-a-top.png" alt="Board top">
+    <img src="assets/can_hat_40_rev-a-top.png" alt="Board top">
     <figcaption>Top</figcaption>
   </figure>
   <figure>
-    <img src="assets/can_hat_mini_rel-a-bottom.png" alt="Board bottom">
+    <img src="assets/can_hat_40_rev-a-bottom.png" alt="Board bottom">
     <figcaption>Bottom</figcaption>
   </figure>
 </div>
@@ -29,17 +30,12 @@ Rel A corresponds to `can_hat_mini_pcb` v0.1.1.
 
 ### Host interface
 
-The 8-pin header (J1) carries 5 V power, ground and the SPI lines (`SCK`,
-`CIPO`, `COPI` and `CS`) of the MCP2518FD controller. The second ground pin
-is optional.
+The hat bridges the host's SPI bus to the CAN bus through the MCP2518FD
+controller. By default it uses the host's SPI0 bus (CE0) with the controller
+interrupt on GPIO22, which matches the device-tree overlay shown in the Linux
+setup guide.
 
-The interrupt pin (`INT`) is optional but recommended. It should be attached
-to a hardware interrupt pin on the host.
-
-### Logic level
-
-The `V IO` jumper (JP1) selects the logic level of the host interface: 5 V
-(default) or 3.3 V. Set it to match the host.
+The board operates at fixed 3.3 V logic.
 
 ### Bus termination
 
@@ -51,5 +47,5 @@ Enable termination only when the board sits at a physical end of the bus.
 
 ### Silent mode
 
-Closing the `CAN silent` jumper (JP2) puts the transceiver in silent
+Closing the `CAN silent` jumper (JP1) puts the transceiver in silent
 (listen-only) mode, for monitoring a bus without transmitting on it.

@@ -1,15 +1,15 @@
-name: Rel A
-slug: rel-a
+name: Rev A
+slug: rev-a
 version: v0.1.1  # Matches the PCB git release tag.
 status: nrnd  # preview | preproduction | active | nrnd | obsolete
 released: 2025-06-16
 doc_id: DS-MOMENTUM-A
-doc_rev: "1.0"
+doc_release: "1.0"
 #doc_updated: 2026-11-12  # TODO: Shows "WIP" while unset.
 marking: momentum_pcb v0.1.1  # Silkscreen text.
 pcb: momentum_pcb v0.1.1
 
-# Changes since the previous release (shown in release history).
+# Changes since the previous revision (shown in revision history).
 changes:
   - Initial release.
 
@@ -23,7 +23,7 @@ features:
   - "Dual **5 V source** (5V pin or USB-C) with automatic switching"
   - "Jumper selectable **5 V or 3.3 V logic level** on the SPI interface"
 
-# `group` sets the table grouping; `id` matches rows across releases.
+# `group` sets the table grouping; `id` matches rows across revisions.
 # Use min/typ/max/unit for numbers, or `value` for text.
 specs:
   - { id: vin,         group: Power,          param: Supply voltage,        cond: 5V pin or USB-C, typ: 5.0, unit: V }
@@ -85,16 +85,16 @@ batteries:
 
 firmware:
   note: >-
-    The momentum firmware supports this release. Flash over USB-C with blasher
+    The momentum firmware supports this revision. Flash over USB-C with blasher
     or over SWD (see Detailed description).
 
 protocols:
   - { name: ScalpelSpace CAN Protocol, url: /protocols/can_driver/ }
 
 downloads:
-  - { label: Schematic, type: PDF,  file: momentum_rel-a_schematic.pdf }
-  - { label: Gerbers,   type: ZIP,  file: momentum_rel-a_gerbers.zip }
-  - { label: 3D model,  type: STEP, file: momentum_rel-a.step }
+  - { label: Schematic, type: PDF,  file: momentum_rev-a_schematic.pdf }
+  - { label: Gerbers,   type: ZIP,  file: momentum_rev-a_gerbers.zip }
+  - { label: 3D model,  type: STEP, file: momentum_rev-a.step }
 
 bom:
   - { mpn: STM32L432KC,         mfr: STMicroelectronics,        desc: 32-bit MCU,                          qty: 1 }

@@ -2,15 +2,15 @@
 layout: default
 ---
 {%- comment -%}
-Product landing page: shared description, release picker/comparison,
+Product landing page: shared description, revision picker/comparison,
 links to repositories and product-level guides.
 Front matter: product (key under _data/products).
 {%- endcomment -%}
 {%- assign pdata = site.data.products[page.product] -%}
 {%- assign product = pdata.product -%}
-{%- assign latest_key = product.releases | last -%}
+{%- assign latest_key = product.revisions | last -%}
 {%- assign latest = pdata[latest_key] -%}
-{%- assign rel_keys = product.releases | reverse -%}
+{%- assign rev_keys = product.revisions | reverse -%}
 {%- capture product_url %}/products/{{ page.product }}/{% endcapture -%}
 
 <div class="product">
@@ -36,27 +36,27 @@ Front matter: product (key under _data/products).
 
   {{ content }}
 
-  <h2 id="releases">Releases</h2>
-  <div class="ds-release-cards">
-    {%- for key in rel_keys %}
+  <h2 id="revisions">Revisions</h2>
+  <div class="ds-revision-cards">
+    {%- for key in rev_keys %}
     {%- assign item = pdata[key] %}
-    <a class="ds-release-card{% if key == latest_key %} is-latest{% endif %}"
+    <a class="ds-revision-card{% if key == latest_key %} is-latest{% endif %}"
        href="{{ product_url | append: item.slug | append: '/' | relative_url }}">
-      <span class="ds-release-card__name">{{ item.name }}</span>
+      <span class="ds-revision-card__name">{{ item.name }}</span>
       {% include datasheet/status_badge.html status=item.status %}
-      <span class="ds-release-card__meta">{% if item.version %}<code>{{ item.version }}</code> · {% endif %}Released {{ item.released | date: "%Y-%m-%d" | default: "TBD" }}</span>
-      <span class="ds-release-card__change">{{ item.changes | first }}</span>
+      <span class="ds-revision-card__meta">{% if item.version %}<code>{{ item.version }}</code> · {% endif %}Released {{ item.released | date: "%Y-%m-%d" | default: "TBD" }}</span>
+      <span class="ds-revision-card__change">{{ item.changes | first }}</span>
     </a>
     {%- endfor %}
   </div>
 
-  <h3 id="compare">Compare releases</h3>
+  <h3 id="compare">Compare revisions</h3>
   <div class="ds-table-wrap">
     <table class="ds-compare">
       <thead>
       <tr>
         <th>Parameter</th>
-        {%- for key in product.releases %}
+        {%- for key in product.revisions %}
         <th>{{ pdata[key].name }}</th>
         {%- endfor %}
       </tr>
@@ -68,13 +68,13 @@ Front matter: product (key under _data/products).
       <tr>
         <td>{{ ref.param }}</td>
         {%- assign prev = "" %}
-        {%- for key in product.releases %}
+        {%- for key in product.revisions %}
         {%- assign row = pdata[key].specs | where: "id", id | first %}
         {%- capture cell %}{% include datasheet/spec_value.html r=row %}{%
         endcapture %}
         <td
           {% if forloop.index> 1 and cell != prev %} class="ds-diff"
-          title="Changed from previous release"{% endif %}>{{ cell }}
+          title="Changed from previous revision"{% endif %}>{{ cell }}
         </td>
         {%- assign prev = cell %}
         {%- endfor %}
@@ -88,7 +88,7 @@ Front matter: product (key under _data/products).
   {%- if product.repos and product.repos.size > 0 %}
   <h2 id="firmware-software">Firmware and software</h2>
   <p>Maintained in their own repositories. Each datasheet notes firmware
-    compatibility for that release.</p>
+    compatibility for that revision.</p>
   <table>
     <thead>
     <tr>

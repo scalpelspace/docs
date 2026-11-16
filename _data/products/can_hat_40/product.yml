@@ -1,5 +1,5 @@
-# Product data shared by every release. Each release has its own file next
-# to this one (rel_a.yml, ...); the file name is the release key.
+# Product data shared by every revision. Each revision has its own file next
+# to this one (rev_a.yml, ...); the file name is the revision key.
 
 name: SPI-CAN 40-pin Hat
 tagline: CAN FD hat for 40-pin single-board computers
@@ -7,7 +7,7 @@ codename: can_hat_40
 category: CAN interfaces
 
 # Photo for the product cards and product page.
-image: /products/can_hat_40/rel-a/assets/can_hat_40_rel-a-top.png
+image: /products/can_hat_40/rev-a/assets/can_hat_40_rev-a-top.png
 
 # Shown on the product page and at the top of every datasheet overview.
 description: >-
@@ -16,10 +16,10 @@ description: >-
   40-pin header and bridges the host's SPI bus to a CAN transceiver, so any
   compatible SBC can talk CAN without an integrated controller.
 
-# Oldest first. The last entry is the latest release.
-releases: [ rel_a ]
+# Oldest first. The last entry is the latest revision.
+revisions: [ rev_a ]
 
-# Spec ids shown in the product page's release comparison table.
+# Spec ids shown in the product page's revision comparison table.
 compare: [ can, controller, termination, logic ]
 
 # Links to firmware and software, which live in their own repositories.

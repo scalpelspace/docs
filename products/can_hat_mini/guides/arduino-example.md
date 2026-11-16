@@ -3,12 +3,12 @@ title: Arduino Example
 parent: SPI-CAN Breakout
 grand_parent: Products
 nav_order: 2
-applies_to: [ rel_a ]
+applies_to: [ rev_a ]
 ---
 
 # SPI-CAN Breakout: Arduino Example
 
-<p class="ds-applies">Applies to: Rel A</p>
+<p class="ds-applies">Applies to: Rev A</p>
 
 The following example code was made for an `Arduino Nano` and similar
 derivatives showing use with classic CAN (500 kbps).
